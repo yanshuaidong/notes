@@ -1,0 +1,412 @@
+{
+  "adm": {
+    "api_symbol": "AD0",
+    "exchange": "SHFE",
+    "name": "铸造铝主连"
+  },
+  "agm": {
+    "api_symbol": "AG0",
+    "exchange": "SHFE",
+    "name": "沪银主连"
+  },
+  "alm": {
+    "api_symbol": "AL0",
+    "exchange": "SHFE",
+    "name": "沪铝主连"
+  },
+  "am": {
+    "api_symbol": "A0",
+    "exchange": "DCE",
+    "name": "豆一主连"
+  },
+  "aom": {
+    "api_symbol": "AO0",
+    "exchange": "SHFE",
+    "name": "氧化铝主连"
+  },
+  "apm": {
+    "api_symbol": "AP0",
+    "exchange": "CZCE",
+    "name": "苹果主连"
+  },
+  "aum": {
+    "api_symbol": "AU0",
+    "exchange": "SHFE",
+    "name": "沪金主连"
+  },
+  "bbm": {
+    "api_symbol": "BB0",
+    "exchange": "DCE",
+    "name": "胶合板主连"
+  },
+  "bcm": {
+    "api_symbol": "BC0",
+    "exchange": "INE",
+    "name": "国际铜主连"
+  },
+  "bm": {
+    "api_symbol": "B0",
+    "exchange": "DCE",
+    "name": "豆二主连"
+  },
+  "brm": {
+    "api_symbol": "BR0",
+    "exchange": "SHFE",
+    "name": "丁二烯胶主连"
+  },
+  "bum": {
+    "api_symbol": "BU0",
+    "exchange": "SHFE",
+    "name": "沥青主连"
+  },
+  "bzm": {
+    "api_symbol": "BZ0",
+    "exchange": "DCE",
+    "name": "纯苯主连"
+  },
+  "cfm": {
+    "api_symbol": "CF0",
+    "exchange": "CZCE",
+    "name": "棉花主连"
+  },
+  "cjm": {
+    "api_symbol": "CJ0",
+    "exchange": "CZCE",
+    "name": "红枣主连"
+  },
+  "cm": {
+    "api_symbol": "C0",
+    "exchange": "DCE",
+    "name": "玉米主连"
+  },
+  "csm": {
+    "api_symbol": "CS0",
+    "exchange": "DCE",
+    "name": "淀粉主连"
+  },
+  "cum": {
+    "api_symbol": "CU0",
+    "exchange": "SHFE",
+    "name": "沪铜主连"
+  },
+  "cym": {
+    "api_symbol": "CY0",
+    "exchange": "CZCE",
+    "name": "棉纱主连"
+  },
+  "ebm": {
+    "api_symbol": "EB0",
+    "exchange": "DCE",
+    "name": "苯乙烯主连"
+  },
+  "ecm": {
+    "api_symbol": "EC0",
+    "exchange": "INE",
+    "name": "欧线集运主连"
+  },
+  "egm": {
+    "api_symbol": "EG0",
+    "exchange": "DCE",
+    "name": "乙二醇主连"
+  },
+  "fbm": {
+    "api_symbol": "FB0",
+    "exchange": "DCE",
+    "name": "纤维板主连"
+  },
+  "fgm": {
+    "api_symbol": "FG0",
+    "exchange": "CZCE",
+    "name": "玻璃主连"
+  },
+  "fum": {
+    "api_symbol": "FU0",
+    "exchange": "SHFE",
+    "name": "燃油主连"
+  },
+  "hcm": {
+    "api_symbol": "HC0",
+    "exchange": "SHFE",
+    "name": "热卷主连"
+  },
+  "icm": {
+    "api_symbol": "IC0",
+    "exchange": "CFFEX",
+    "name": "中证500股指主连"
+  },
+  "ifm": {
+    "api_symbol": "IF0",
+    "exchange": "CFFEX",
+    "name": "沪深主连"
+  },
+  "ihm": {
+    "api_symbol": "IH0",
+    "exchange": "CFFEX",
+    "name": "上证主连"
+  },
+  "im": {
+    "api_symbol": "I0",
+    "exchange": "DCE",
+    "name": "铁矿石主连"
+  },
+  "imm": {
+    "api_symbol": "IM0",
+    "exchange": "CFFEX",
+    "name": "中证1000股指主连"
+  },
+  "jdm": {
+    "api_symbol": "JD0",
+    "exchange": "DCE",
+    "name": "鸡蛋主连"
+  },
+  "jm": {
+    "api_symbol": "J0",
+    "exchange": "DCE",
+    "name": "焦炭主连"
+  },
+  "jmm": {
+    "api_symbol": "JM0",
+    "exchange": "DCE",
+    "name": "焦煤主连"
+  },
+  "lcm": {
+    "api_symbol": "LC0",
+    "exchange": "GFEX",
+    "name": "碳酸锂主连"
+  },
+  "lfm": {
+    "api_symbol": "LF0",
+    "exchange": "DCE",
+    "name": "塑料月均主连"
+  },
+  "lgm": {
+    "api_symbol": "LG0",
+    "exchange": "DCE",
+    "name": "原木主连"
+  },
+  "lhm": {
+    "api_symbol": "LH0",
+    "exchange": "DCE",
+    "name": "生猪主连"
+  },
+  "lm": {
+    "api_symbol": "L0",
+    "exchange": "DCE",
+    "name": "塑料主连"
+  },
+  "lum": {
+    "api_symbol": "LU0",
+    "exchange": "INE",
+    "name": "低硫燃油主连"
+  },
+  "mam": {
+    "api_symbol": "MA0",
+    "exchange": "CZCE",
+    "name": "甲醇主连"
+  },
+  "mm": {
+    "api_symbol": "M0",
+    "exchange": "DCE",
+    "name": "豆粕主连"
+  },
+  "nim": {
+    "api_symbol": "NI0",
+    "exchange": "SHFE",
+    "name": "沪镍主连"
+  },
+  "nrm": {
+    "api_symbol": "NR0",
+    "exchange": "INE",
+    "name": "20号胶主连"
+  },
+  "oim": {
+    "api_symbol": "OI0",
+    "exchange": "CZCE",
+    "name": "菜油主连"
+  },
+  "opm": {
+    "api_symbol": "OP0",
+    "exchange": "SHFE",
+    "name": "胶版纸主连"
+  },
+  "pbm": {
+    "api_symbol": "PB0",
+    "exchange": "SHFE",
+    "name": "沪铅主连"
+  },
+  "pfm": {
+    "api_symbol": "PF0",
+    "exchange": "CZCE",
+    "name": "短纤主连"
+  },
+  "pgm": {
+    "api_symbol": "PG0",
+    "exchange": "DCE",
+    "name": "LPG主连"
+  },
+  "pkm": {
+    "api_symbol": "PK0",
+    "exchange": "CZCE",
+    "name": "花生主连"
+  },
+  "pm": {
+    "api_symbol": "P0",
+    "exchange": "DCE",
+    "name": "棕榈油主连"
+  },
+  "ppfm": {
+    "api_symbol": "PPF0",
+    "exchange": "DCE",
+    "name": "聚丙烯月均主连"
+  },
+  "ppm": {
+    "api_symbol": "PP0",
+    "exchange": "DCE",
+    "name": "聚丙烯主连"
+  },
+  "prm": {
+    "api_symbol": "PR0",
+    "exchange": "CZCE",
+    "name": "瓶片主连"
+  },
+  "psm": {
+    "api_symbol": "PS0",
+    "exchange": "GFEX",
+    "name": "多晶硅主连"
+  },
+  "pxm": {
+    "api_symbol": "PX0",
+    "exchange": "CZCE",
+    "name": "对二甲苯主连"
+  },
+  "rbm": {
+    "api_symbol": "RB0",
+    "exchange": "SHFE",
+    "name": "螺纹钢主连"
+  },
+  "rmm": {
+    "api_symbol": "RM0",
+    "exchange": "CZCE",
+    "name": "菜粕主连"
+  },
+  "rrm": {
+    "api_symbol": "RR0",
+    "exchange": "DCE",
+    "name": "粳米主连"
+  },
+  "rsm": {
+    "api_symbol": "RS0",
+    "exchange": "CZCE",
+    "name": "菜籽主连"
+  },
+  "rum": {
+    "api_symbol": "RU0",
+    "exchange": "SHFE",
+    "name": "橡胶主连"
+  },
+  "sam": {
+    "api_symbol": "SA0",
+    "exchange": "CZCE",
+    "name": "纯碱主连"
+  },
+  "scm": {
+    "api_symbol": "SC0",
+    "exchange": "INE",
+    "name": "原油主连"
+  },
+  "sfm": {
+    "api_symbol": "SF0",
+    "exchange": "CZCE",
+    "name": "硅铁主连"
+  },
+  "shm": {
+    "api_symbol": "SH0",
+    "exchange": "CZCE",
+    "name": "烧碱主连"
+  },
+  "sim": {
+    "api_symbol": "SI0",
+    "exchange": "GFEX",
+    "name": "工业硅主连"
+  },
+  "smm": {
+    "api_symbol": "SM0",
+    "exchange": "CZCE",
+    "name": "锰硅主连"
+  },
+  "snm": {
+    "api_symbol": "SN0",
+    "exchange": "SHFE",
+    "name": "沪锡主连"
+  },
+  "spm": {
+    "api_symbol": "SP0",
+    "exchange": "SHFE",
+    "name": "纸浆主连"
+  },
+  "srm": {
+    "api_symbol": "SR0",
+    "exchange": "CZCE",
+    "name": "白糖主连"
+  },
+  "ssm": {
+    "api_symbol": "SS0",
+    "exchange": "SHFE",
+    "name": "不锈钢主连"
+  },
+  "tam": {
+    "api_symbol": "TA0",
+    "exchange": "CZCE",
+    "name": "PTA主连"
+  },
+  "tfm": {
+    "api_symbol": "TF0",
+    "exchange": "CFFEX",
+    "name": "五债主连"
+  },
+  "tlm": {
+    "api_symbol": "TL0",
+    "exchange": "CFFEX",
+    "name": "三十债主连"
+  },
+  "tm": {
+    "api_symbol": "T0",
+    "exchange": "CFFEX",
+    "name": "十债主连"
+  },
+  "tsm": {
+    "api_symbol": "TS0",
+    "exchange": "CFFEX",
+    "name": "二债主连"
+  },
+  "urm": {
+    "api_symbol": "UR0",
+    "exchange": "CZCE",
+    "name": "尿素主连"
+  },
+  "vfm": {
+    "api_symbol": "VF0",
+    "exchange": "DCE",
+    "name": "PVC月均主连"
+  },
+  "vm": {
+    "api_symbol": "V0",
+    "exchange": "DCE",
+    "name": "PVC主连"
+  },
+  "wrm": {
+    "api_symbol": "WR0",
+    "exchange": "SHFE",
+    "name": "线材主连"
+  },
+  "ym": {
+    "api_symbol": "Y0",
+    "exchange": "DCE",
+    "name": "豆油主连"
+  },
+  "znm": {
+    "api_symbol": "ZN0",
+    "exchange": "SHFE",
+    "name": "沪锌主连"
+  }
+}

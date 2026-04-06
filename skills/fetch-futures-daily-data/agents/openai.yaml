@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fetch Futures Daily Data"
+  short_description: "Fetch daily futures bars by date and symbol"
+  default_prompt: "Use $fetch-futures-daily-data to fetch futures daily data for a specified trade date and symbol."
