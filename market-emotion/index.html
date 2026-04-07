@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市场情绪与交易线索</title>
+    <style>
+        :root {
+            --bg: #efe6d8;
+            --panel: rgba(255, 251, 245, 0.88);
+            --panel-strong: #fffaf3;
+            --ink: #1f2937;
+            --muted: #5f6b76;
+            --line: rgba(31, 41, 55, 0.12);
+            --accent: #9a3412;
+            --accent-soft: rgba(154, 52, 18, 0.10);
+            --good: #b45309;
+            --bad: #b91c1c;
+            --flat: #475569;
+            --ok: #0f766e;
+            --shadow: 0 24px 60px rgba(55, 65, 81, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(154, 52, 18, 0.18), transparent 28%),
+                radial-gradient(circle at right center, rgba(15, 118, 110, 0.12), transparent 28%),
+                linear-gradient(180deg, #f8f4ed 0%, var(--bg) 100%);
+        }
+
+        button,
+        select {
+            font: inherit;
+        }
+
+        .shell {
+            max-width: 1520px;
+            margin: 0 auto;
+            padding: 26px 18px 42px;
+        }
+
+        .hero {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            width: fit-content;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: 0.04em;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(30px, 4.5vw, 56px);
+            line-height: 1.02;
+            letter-spacing: 0.02em;
+        }
+
+        .subtitle {
+            max-width: 88ch;
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 300px minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 16px;
+            padding: 20px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .section-title {
+            margin: 0 0 8px;
+            font-size: 15px;
+        }
+
+        .sidebar p,
+        .sidebar li,
+        .inline-note,
+        .empty-state,
+        .load-state {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        .sidebar ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .stats {
+            display: grid;
+            gap: 10px;
+        }
+
+        .stat {
+            padding: 12px 14px;
+            border-radius: 18px;
+            border: 1px solid rgba(31, 41, 55, 0.08);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 23px;
+            line-height: 1.1;
+            margin-top: 6px;
+        }
+
+        .main {
+            display: grid;
+            gap: 16px;
+        }
+
+        .overview {
+            padding: 18px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .overview-top {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .overview-title {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .overview-date {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .focus-column {
+            padding: 14px;
+            border-radius: 22px;
+            border: 1px solid rgba(31, 41, 55, 0.08);
+            background: rgba(255, 255, 255, 0.74);
+            display: grid;
+            gap: 10px;
+            align-content: start;
+        }
+
+        .focus-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .focus-head h3,
+        .board-title,
+        .calendar-title {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .focus-item,
+        .risk-item,
+        .chip-card {
+            border-radius: 18px;
+            border: 1px solid rgba(31, 41, 55, 0.08);
+            background: rgba(255, 255, 255, 0.82);
+        }
+
+        .focus-item {
+            padding: 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .focus-item button {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            text-align: left;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .focus-item h4 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .micro {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .focus-tags,
+        .meta-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag,
+        .meta-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(31, 41, 55, 0.07);
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .filters {
+            padding: 18px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .filter-row,
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        button,
+        select {
+            border: 1px solid rgba(31, 41, 55, 0.14);
+            background: rgba(255, 255, 255, 0.84);
+            color: var(--ink);
+            border-radius: 14px;
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+
+        button:hover,
+        select:hover {
+            border-color: rgba(154, 52, 18, 0.42);
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 12px;
+        }
+
+        .board {
+            padding: 16px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .chip-list,
+        .risk-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .chip-card {
+            padding: 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .chip-card button {
+            border: 0;
+            background: transparent;
+            padding: 0;
+            text-align: left;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .chip-title {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .risk-item {
+            padding: 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .risk-item strong {
+            font-size: 13px;
+        }
+
+        .calendar-card {
+            overflow: hidden;
+        }
+
+        .calendar-toolbar {
+            padding: 18px 20px 12px;
+            border-bottom: 1px solid rgba(31, 41, 55, 0.06);
+            display: grid;
+            gap: 12px;
+        }
+
+        .month-label {
+            min-width: 190px;
+            font-size: 25px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .calendar-wrap {
+            padding: 12px;
+        }
+
+        .weekday-row,
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .weekday {
+            padding: 0 8px 8px;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: right;
+            letter-spacing: 0.04em;
+        }
+
+        .day {
+            min-height: 176px;
+            padding: 12px;
+            border-radius: 22px;
+            border: 1px solid rgba(31, 41, 55, 0.08);
+            background: rgba(255, 255, 255, 0.76);
+            display: grid;
+            align-content: start;
+            gap: 10px;
+        }
+
+        .day.is-empty {
+            background: rgba(255, 255, 255, 0.34);
+        }
+
+        .day.is-today {
+            border-color: rgba(154, 52, 18, 0.54);
+            box-shadow: inset 0 0 0 1px rgba(154, 52, 18, 0.12);
+        }
+
+        .day-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .day-number {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .count {
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(31, 41, 55, 0.07);
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .event-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .event-chip {
+            display: grid;
+            gap: 6px;
+            padding: 10px;
+            border: 0;
+            width: 100%;
+            text-align: left;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 18px rgba(31, 41, 55, 0.08);
+            cursor: pointer;
+        }
+
+        .event-chip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 22px rgba(31, 41, 55, 0.12);
+        }
+
+        .event-topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .instrument {
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .event-title {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .tooltip {
+            position: fixed;
+            z-index: 30;
+            max-width: 360px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(31, 41, 55, 0.10);
+            background: rgba(24, 28, 35, 0.95);
+            color: #f8fafc;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 120ms ease, transform 120ms ease;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tooltip strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .tooltip p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.7;
+            color: rgba(248, 250, 252, 0.88);
+        }
+
+        dialog {
+            width: min(860px, calc(100vw - 24px));
+            border: none;
+            border-radius: 28px;
+            padding: 0;
+            background: var(--panel-strong);
+            color: var(--ink);
+            box-shadow: 0 30px 90px rgba(15, 23, 42, 0.30);
+        }
+
+        dialog::backdrop {
+            background: rgba(15, 23, 42, 0.42);
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-inner {
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .modal-head {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: 30px;
+            line-height: 1.18;
+        }
+
+        .close-btn {
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        .trade-card {
+            padding: 16px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(31, 41, 55, 0.08);
+            display: grid;
+            gap: 10px;
+        }
+
+        .trade-grid,
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .meta-card {
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(31, 41, 55, 0.08);
+        }
+
+        .meta-label {
+            margin-bottom: 4px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .modal-body {
+            display: grid;
+            gap: 12px;
+        }
+
+        .modal-section {
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(31, 41, 55, 0.08);
+        }
+
+        .modal-section h3 {
+            margin: 0 0 8px;
+            font-size: 14px;
+        }
+
+        .modal-section p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .load-state,
+        .empty-state {
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px dashed rgba(31, 41, 55, 0.18);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .warning {
+            color: #b91c1c;
+        }
+
+        @media (max-width: 1160px) {
+
+            .layout,
+            .board-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .shell {
+                padding: 18px 10px 24px;
+            }
+
+            .trade-grid,
+            .meta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .weekday-row,
+            .calendar-grid {
+                gap: 6px;
+            }
+
+            .day {
+                min-height: 116px;
+                padding: 8px;
+            }
+
+            .event-chip {
+                padding: 8px;
+            }
+
+            .instrument {
+                display: none;
+            }
+
+            .event-title {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <section class="hero">
+            <span class="eyebrow">MARKET REPORT EMOTIONS</span>
+            <h1>市场情绪与交易线索</h1>
+            <p class="subtitle">
+                这个版本不只记录情绪，还把研报拆成更适合期货盘前使用的交易线索：你可以直接看到当天偏多、偏空、震荡的品种，驱动来自哪里，适合什么周期，风险点和失效条件是什么。
+            </p>
+        </section>
+
+        <section class="layout">
+            <aside class="card sidebar">
+                <section>
+                    <h2 class="section-title">这版怎么用</h2>
+                    <ul>
+                        <li>先看“最新交易焦点”，做当天品种排序。</li>
+                        <li>再用方向、驱动和品种筛选，找和自己交易风格匹配的机会。</li>
+                        <li>点开事件详情，重点看执行提示、风险点和失效条件。</li>
+                        <li>日历保留给你做复盘，观察相似情绪和驱动的历史样本。</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="section-title">统计</h2>
+                    <div class="stats" id="stats"></div>
+                </section>
+
+                <section>
+                    <h2 class="section-title">提示</h2>
+                    <p>
+                        页面读取同目录下的 <code>market-emotion-events.json</code>。如果直接双击本地 HTML 打开，浏览器可能拦截本地 JSON
+                        读取。更稳妥的方式是在当前目录运行 <code>python3 -m http.server</code> 后访问页面。
+                    </p>
+                </section>
+            </aside>
+
+            <main class="main">
+                <section class="card overview">
+                    <div class="overview-top">
+                        <div>
+                            <h2 class="overview-title">最新交易焦点</h2>
+                            <div class="overview-date" id="focusDateLabel">载入中</div>
+                        </div>
+                        <div class="meta-strip" id="focusMeta"></div>
+                    </div>
+                    <div class="focus-grid" id="focusGrid"></div>
+                </section>
+
+                <section class="card calendar-card">
+                    <div class="calendar-toolbar">
+                        <div class="toolbar">
+                            <div class="control-group">
+                                <button id="prevMonth" type="button">上一月</button>
+                                <div class="month-label" id="monthLabel">载入中</div>
+                                <button id="nextMonth" type="button">下一月</button>
+                            </div>
+                            <div class="control-group">
+                                <select id="monthSelect" aria-label="选择月份"></select>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="calendar-title">情绪日历与复盘入口</h2>
+                            <div class="inline-note">点击卡片看完整交易解读，日历更适合回看情绪和驱动在不同日期的分布。</div>
+                        </div>
+                    </div>
+
+                    <div id="loadState" class="load-state">正在加载数据…</div>
+                    <div class="calendar-wrap" id="calendarWrap" hidden>
+                        <div class="weekday-row">
+                            <div class="weekday">周一</div>
+                            <div class="weekday">周二</div>
+                            <div class="weekday">周三</div>
+                            <div class="weekday">周四</div>
+                            <div class="weekday">周五</div>
+                            <div class="weekday">周六</div>
+                            <div class="weekday">周日</div>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+                </section>
+
+                <section class="card filters">
+                    <div class="toolbar">
+                        <div>
+                            <h2 class="board-title">筛选后的交易面板</h2>
+                            <div class="inline-note">把研报从“日历记录”切成可操作的观察列表。</div>
+                        </div>
+                        <button id="resetFilters" type="button">重置筛选</button>
+                    </div>
+                    <div class="filter-row">
+                        <div class="control-group">
+                            <select id="instrumentFilter" aria-label="按品种筛选"></select>
+                            <select id="directionFilter" aria-label="按方向筛选"></select>
+                            <select id="driverFilter" aria-label="按驱动筛选"></select>
+                            <select id="horizonFilter" aria-label="按周期筛选"></select>
+                        </div>
+                    </div>
+                    <div class="board-grid">
+                        <section class="card board">
+                            <div class="toolbar">
+                                <h3 class="board-title">交易卡片</h3>
+                                <div class="inline-note" id="resultSummary"></div>
+                            </div>
+                            <div class="chip-list" id="filteredList"></div>
+                        </section>
+
+                        <section class="card board">
+                            <div class="toolbar">
+                                <h3 class="board-title">风险雷达</h3>
+                                <div class="inline-note">按筛选结果自动汇总最常见风险。</div>
+                            </div>
+                            <div class="risk-list" id="riskBoard"></div>
+                        </section>
+                    </div>
+                </section>
+
+
+            </main>
+        </section>
+    </div>
+
+    <div id="tooltip" class="tooltip" role="tooltip"></div>
+
+    <dialog id="detailModal">
+        <div class="modal-inner">
+            <div class="modal-head">
+                <div>
+                    <p class="eyebrow" id="modalEyebrow">EVENT</p>
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                </div>
+                <button class="close-btn" id="closeModal" type="button" aria-label="关闭">关闭</button>
+            </div>
+            <section class="trade-card">
+                <div class="toolbar">
+                    <h3 class="board-title">交易解读卡片</h3>
+                    <div class="meta-strip" id="modalContracts"></div>
+                </div>
+                <div class="trade-grid" id="tradeGrid"></div>
+            </section>
+            <div class="meta-grid" id="metaGrid"></div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </dialog>
+
+    <script>
+        const state = {
+            dataset: null,
+            months: [],
+            currentMonth: null,
+            groupedByDate: new Map(),
+            filters: {
+                instrument: "全部品种",
+                direction: "全部方向",
+                driver: "全部驱动",
+                horizon: "全部周期"
+            }
+        };
+
+        const loadState = document.getElementById("loadState");
+        const calendarWrap = document.getElementById("calendarWrap");
+        const calendarGrid = document.getElementById("calendarGrid");
+        const monthLabel = document.getElementById("monthLabel");
+        const monthSelect = document.getElementById("monthSelect");
+        const stats = document.getElementById("stats");
+        const tooltip = document.getElementById("tooltip");
+        const detailModal = document.getElementById("detailModal");
+        const filteredList = document.getElementById("filteredList");
+        const riskBoard = document.getElementById("riskBoard");
+        const resultSummary = document.getElementById("resultSummary");
+
+        async function loadDataset() {
+            const response = await fetch("./market-emotion-events.json");
+            if (!response.ok) {
+                throw new Error("JSON 读取失败");
+            }
+            return response.json();
+        }
+
+        function groupByDate(events) {
+            const grouped = new Map();
+            for (const event of events) {
+                if (!grouped.has(event.date)) {
+                    grouped.set(event.date, []);
+                }
+                grouped.get(event.date).push(event);
+            }
+            return grouped;
+        }
+
+        function getMonthKey(dateText) {
+            return dateText.slice(0, 7);
+        }
+
+        function monthTitle(monthKey) {
+            const [year, month] = monthKey.split("-");
+            return `${year} 年 ${Number(month)} 月`;
+        }
+
+        function latestDate(events) {
+            return [...events].sort((a, b) => a.date.localeCompare(b.date)).at(-1)?.date || "";
+        }
+
+        function directionColor(direction) {
+            return (state.dataset.direction_palette || {})[direction] || "#475569";
+        }
+
+        function emotionColor(emotion) {
+            return (state.dataset.emotion_palette || {})[emotion] || "#475569";
+        }
+
+        function formatLabel(text) {
+            return text || "未填写";
+        }
+
+        function buildMonthOptions(months) {
+            monthSelect.innerHTML = "";
+            months.forEach((month) => {
+                const option = document.createElement("option");
+                option.value = month;
+                option.textContent = monthTitle(month);
+                monthSelect.append(option);
+            });
+        }
+
+        function renderStats(dataset) {
+            const total = dataset.events.length;
+            const directions = dataset.events.reduce((acc, event) => {
+                acc[event.direction] = (acc[event.direction] || 0) + 1;
+                return acc;
+            }, {});
+            const topDirection = Object.entries(directions).sort((a, b) => b[1] - a[1])[0];
+            const latest = latestDate(dataset.events);
+            const driverCounts = dataset.events.flatMap((event) => event.driver_types || []).reduce((acc, driver) => {
+                acc[driver] = (acc[driver] || 0) + 1;
+                return acc;
+            }, {});
+            const topDriver = Object.entries(driverCounts).sort((a, b) => b[1] - a[1])[0];
+
+            stats.innerHTML = "";
+            [
+                { label: "记录数", value: String(total) },
+                { label: "最新日期", value: latest || "暂无" },
+                { label: "最高频方向", value: topDirection ? `${topDirection[0]} (${topDirection[1]})` : "暂无" },
+                { label: "最高频驱动", value: topDriver ? `${topDriver[0]} (${topDriver[1]})` : "暂无" }
+            ].forEach((item) => {
+                const node = document.createElement("div");
+                node.className = "stat";
+                node.innerHTML = `<div class="meta-label">${item.label}</div><strong>${item.value}</strong>`;
+                stats.append(node);
+            });
+        }
+
+        function buildFilterOptions() {
+            const instruments = ["全部品种", ...new Set(state.dataset.events.map((event) => event.instrument))];
+            const directions = ["全部方向", ...new Set(state.dataset.events.map((event) => event.direction))];
+            const drivers = ["全部驱动", ...new Set(state.dataset.events.flatMap((event) => event.driver_types || []))];
+            const horizons = ["全部周期", ...new Set(state.dataset.events.map((event) => event.trade_horizon))];
+
+            populateSelect(document.getElementById("instrumentFilter"), instruments);
+            populateSelect(document.getElementById("directionFilter"), directions);
+            populateSelect(document.getElementById("driverFilter"), drivers);
+            populateSelect(document.getElementById("horizonFilter"), horizons);
+        }
+
+        function populateSelect(select, options) {
+            select.innerHTML = "";
+            options.forEach((value) => {
+                const option = document.createElement("option");
+                option.value = value;
+                option.textContent = value;
+                select.append(option);
+            });
+        }
+
+        function applyFilters(events) {
+            return events.filter((event) => {
+                const byInstrument = state.filters.instrument === "全部品种" || event.instrument === state.filters.instrument;
+                const byDirection = state.filters.direction === "全部方向" || event.direction === state.filters.direction;
+                const byDriver = state.filters.driver === "全部驱动" || (event.driver_types || []).includes(state.filters.driver);
+                const byHorizon = state.filters.horizon === "全部周期" || event.trade_horizon === state.filters.horizon;
+                return byInstrument && byDirection && byDriver && byHorizon;
+            });
+        }
+
+        function renderFocus() {
+            const latest = latestDate(state.dataset.events);
+            const latestEvents = state.dataset.events.filter((event) => event.date === latest);
+            document.getElementById("focusDateLabel").textContent = latest ? `最新记录日期：${latest}` : "暂无最新记录";
+
+            const directionGroups = [
+                { key: "偏多", title: "偏多优先看", empty: "今天没有偏多记录。" },
+                { key: "震荡", title: "震荡和位置博弈", empty: "今天没有震荡记录。" },
+                { key: "偏空", title: "偏空或谨慎", empty: "今天没有偏空记录。" }
+            ];
+
+            const focusGrid = document.getElementById("focusGrid");
+            focusGrid.innerHTML = "";
+
+            directionGroups.forEach((group) => {
+                const column = document.createElement("div");
+                column.className = "focus-column";
+                const items = latestEvents.filter((event) => event.direction === group.key);
+                column.innerHTML = `
+          <div class="focus-head">
+            <h3>${group.title}</h3>
+            <span class="pill" style="background:${directionColor(group.key)}">${group.key}</span>
+          </div>
+        `;
+
+                if (items.length === 0) {
+                    const empty = document.createElement("div");
+                    empty.className = "empty-state";
+                    empty.textContent = group.empty;
+                    column.append(empty);
+                } else {
+                    items.forEach((event) => column.append(buildFocusItem(event)));
+                }
+                focusGrid.append(column);
+            });
+
+            const driverSummary = latestEvents.flatMap((event) => event.driver_types || []);
+            const uniqueDrivers = [...new Set(driverSummary)].slice(0, 5);
+            const meta = document.getElementById("focusMeta");
+            meta.innerHTML = "";
+            uniqueDrivers.forEach((driver) => {
+                const chip = document.createElement("span");
+                chip.className = "meta-chip";
+                chip.textContent = driver;
+                meta.append(chip);
+            });
+        }
+
+        function buildFocusItem(event) {
+            const wrapper = document.createElement("article");
+            wrapper.className = "focus-item";
+            const button = document.createElement("button");
+            button.type = "button";
+            button.innerHTML = `
+        <h4>${event.instrument}</h4>
+        <div class="micro">${event.title}</div>
+      `;
+            button.addEventListener("click", () => openModal(event));
+            wrapper.append(button);
+
+            const meta = document.createElement("div");
+            meta.className = "focus-tags";
+            [event.trade_horizon, event.signal_strength, ...(event.driver_types || []).slice(0, 2)].forEach((text) => {
+                const chip = document.createElement("span");
+                chip.className = "tag";
+                chip.textContent = text;
+                meta.append(chip);
+            });
+            wrapper.append(meta);
+
+            const note = document.createElement("div");
+            note.className = "micro";
+            note.textContent = event.execution_note || event.summary;
+            wrapper.append(note);
+            return wrapper;
+        }
+
+        function renderFilteredBoard() {
+            const events = applyFilters([...state.dataset.events].sort((a, b) => b.date.localeCompare(a.date)));
+            filteredList.innerHTML = "";
+            riskBoard.innerHTML = "";
+            resultSummary.textContent = `共 ${events.length} 条`;
+
+            if (events.length === 0) {
+                const empty = document.createElement("div");
+                empty.className = "empty-state";
+                empty.textContent = "当前筛选没有匹配记录。";
+                filteredList.append(empty);
+            } else {
+                events.forEach((event) => filteredList.append(buildTradeListCard(event)));
+            }
+
+            renderRiskBoard(events);
+        }
+
+        function buildTradeListCard(event) {
+            const article = document.createElement("article");
+            article.className = "chip-card";
+            const button = document.createElement("button");
+            button.type = "button";
+            button.innerHTML = `
+        <div class="chip-title">
+          <div>
+            <strong>${event.instrument}</strong>
+            <div class="micro">${event.date} · ${event.title}</div>
+          </div>
+          <span class="pill" style="background:${directionColor(event.direction)}">${event.direction}</span>
+        </div>
+        <div class="meta-strip">
+          <span class="meta-chip">${formatLabel(event.trade_horizon)}</span>
+          <span class="meta-chip">${formatLabel(event.signal_strength)}</span>
+          <span class="meta-chip">${formatLabel(event.primary_emotion)}</span>
+        </div>
+        <div class="micro">${event.summary}</div>
+        <div class="micro"><strong>执行：</strong>${formatLabel(event.execution_note)}</div>
+      `;
+            button.addEventListener("click", () => openModal(event));
+            article.append(button);
+            return article;
+        }
+
+        function renderRiskBoard(events) {
+            const riskCounts = {};
+            events.forEach((event) => {
+                (event.risk_flags || []).forEach((risk) => {
+                    riskCounts[risk] = (riskCounts[risk] || 0) + 1;
+                });
+            });
+
+            const ranked = Object.entries(riskCounts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+            if (ranked.length === 0) {
+                const empty = document.createElement("div");
+                empty.className = "empty-state";
+                empty.textContent = "当前筛选没有可汇总的风险。";
+                riskBoard.append(empty);
+                return;
+            }
+
+            ranked.forEach(([risk, count]) => {
+                const item = document.createElement("article");
+                item.className = "risk-item";
+                item.innerHTML = `
+          <div class="chip-title">
+            <strong>${risk}</strong>
+            <span class="meta-chip">${count} 次</span>
+          </div>
+          <div class="micro">这个风险在当前筛选结果里出现频率较高，适合盘前重点盯防。</div>
+        `;
+                riskBoard.append(item);
+            });
+        }
+
+        function renderMonth(monthKey) {
+            state.currentMonth = monthKey;
+            monthLabel.textContent = monthTitle(monthKey);
+            monthSelect.value = monthKey;
+            calendarGrid.innerHTML = "";
+
+            const [year, month] = monthKey.split("-").map(Number);
+            const firstDay = new Date(year, month - 1, 1);
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const firstWeekday = (firstDay.getDay() + 6) % 7;
+            const totalCells = Math.ceil((firstWeekday + daysInMonth) / 7) * 7;
+            const todayKey = new Date().toISOString().slice(0, 10);
+
+            for (let index = 0; index < totalCells; index += 1) {
+                const dayNumber = index - firstWeekday + 1;
+                const isCurrentMonth = dayNumber >= 1 && dayNumber <= daysInMonth;
+                const cell = document.createElement("div");
+                cell.className = `day${isCurrentMonth ? "" : " is-empty"}`;
+
+                if (!isCurrentMonth) {
+                    calendarGrid.append(cell);
+                    continue;
+                }
+
+                const dateKey = `${monthKey}-${String(dayNumber).padStart(2, "0")}`;
+                if (dateKey === todayKey) {
+                    cell.classList.add("is-today");
+                }
+
+                const events = state.groupedByDate.get(dateKey) || [];
+
+                const head = document.createElement("div");
+                head.className = "day-head";
+                head.innerHTML = `
+          <span class="day-number">${dayNumber}</span>
+          <span class="count">${events.length} 条</span>
+        `;
+                cell.append(head);
+
+                if (events.length === 0) {
+                    const empty = document.createElement("div");
+                    empty.className = "instrument";
+                    empty.textContent = "暂无记录";
+                    cell.append(empty);
+                } else {
+                    const eventList = document.createElement("div");
+                    eventList.className = "event-list";
+                    events.forEach((event) => eventList.append(buildEventChip(event)));
+                    cell.append(eventList);
+                }
+
+                calendarGrid.append(cell);
+            }
+        }
+
+        function buildEventChip(event) {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "event-chip";
+            const color = directionColor(event.direction);
+            button.innerHTML = `
+        <div class="event-topline">
+          <span class="pill" style="background:${color}">${event.direction}</span>
+          <span class="instrument">${event.instrument}</span>
+        </div>
+        <div class="event-title">${event.title}</div>
+      `;
+
+            button.addEventListener("mouseenter", (evt) => showTooltip(evt, event));
+            button.addEventListener("mousemove", moveTooltip);
+            button.addEventListener("mouseleave", hideTooltip);
+            button.addEventListener("focus", (evt) => showTooltip(evt, event));
+            button.addEventListener("blur", hideTooltip);
+            button.addEventListener("click", () => openModal(event));
+
+            return button;
+        }
+
+        function showTooltip(evt, event) {
+            tooltip.innerHTML = `
+        <strong style="color:${emotionColor(event.primary_emotion)}">${event.instrument} · ${event.direction} · ${event.primary_emotion}</strong>
+        <p>${event.hover_detail || event.summary || "暂无详情"}</p>
+      `;
+            tooltip.classList.add("visible");
+            moveTooltip(evt);
+        }
+
+        function moveTooltip(evt) {
+            const x = Math.min(evt.clientX + 16, window.innerWidth - tooltip.offsetWidth - 12);
+            const y = Math.min(evt.clientY + 16, window.innerHeight - tooltip.offsetHeight - 12);
+            tooltip.style.left = `${Math.max(12, x)}px`;
+            tooltip.style.top = `${Math.max(12, y)}px`;
+        }
+
+        function hideTooltip() {
+            tooltip.classList.remove("visible");
+        }
+
+        function openModal(event) {
+            document.getElementById("modalEyebrow").textContent = `${event.event_type} · ${event.date}`;
+            document.getElementById("modalTitle").textContent = event.title;
+
+            const contracts = document.getElementById("modalContracts");
+            contracts.innerHTML = "";
+            (event.related_contracts || []).forEach((contract) => {
+                const chip = document.createElement("span");
+                chip.className = "meta-chip";
+                chip.textContent = contract;
+                contracts.append(chip);
+            });
+
+            const tradeItems = [
+                ["方向", event.direction],
+                ["交易周期", event.trade_horizon],
+                ["驱动", (event.driver_types || []).join("、")],
+                ["执行提示", event.execution_note],
+                ["失效条件", (event.invalidations || []).join("、")],
+                ["信号强度", event.signal_strength]
+            ];
+
+            const tradeGrid = document.getElementById("tradeGrid");
+            tradeGrid.innerHTML = "";
+            tradeItems.forEach(([label, value]) => {
+                const card = document.createElement("div");
+                card.className = "meta-card";
+                const color = label === "方向" ? directionColor(event.direction) : "inherit";
+                card.innerHTML = `<div class="meta-label">${label}</div><div style="color:${color}">${formatLabel(value)}</div>`;
+                tradeGrid.append(card);
+            });
+
+            const metaItems = [
+                ["品种", event.instrument],
+                ["主情绪", event.primary_emotion],
+                ["全部情绪", (event.emotions || []).join("、")],
+                ["影响判断", event.impact],
+                ["记录信心", event.confidence],
+                ["来源", event.source_reference]
+            ];
+
+            const metaGrid = document.getElementById("metaGrid");
+            metaGrid.innerHTML = "";
+            metaItems.forEach(([label, value]) => {
+                const card = document.createElement("div");
+                card.className = "meta-card";
+                const color = label === "主情绪" ? emotionColor(event.primary_emotion) : "inherit";
+                card.innerHTML = `<div class="meta-label">${label}</div><div style="color:${color}">${formatLabel(value)}</div>`;
+                metaGrid.append(card);
+            });
+
+            const followup = event.followup_result
+                ? JSON.stringify(event.followup_result, null, 2)
+                    .replace(/[{}"]/g, "")
+                    .replace(/,/g, "")
+                    .trim()
+                : "待补充";
+
+            const bodySections = [
+                ["摘要", event.summary],
+                ["核心逻辑", event.thesis],
+                ["完整信息", event.full_text],
+                ["风险点", (event.risk_flags || []).join("、")],
+                ["后验观察", followup || "待补充"],
+                ["标签", (event.tags || []).join("、")]
+            ];
+
+            const body = document.getElementById("modalBody");
+            body.innerHTML = "";
+            bodySections.forEach(([title, text]) => {
+                const section = document.createElement("section");
+                section.className = "modal-section";
+                section.innerHTML = `<h3>${title}</h3><p>${formatLabel(text)}</p>`;
+                body.append(section);
+            });
+
+            detailModal.showModal();
+        }
+
+        function stepMonth(delta) {
+            const index = state.months.indexOf(state.currentMonth);
+            const nextIndex = Math.max(0, Math.min(state.months.length - 1, index + delta));
+            renderMonth(state.months[nextIndex]);
+        }
+
+        function renderEmpty(message, isWarning = false) {
+            loadState.hidden = false;
+            calendarWrap.hidden = true;
+            loadState.className = `load-state${isWarning ? " warning" : ""}`;
+            loadState.textContent = message;
+        }
+
+        function syncFilterInputs() {
+            document.getElementById("instrumentFilter").value = state.filters.instrument;
+            document.getElementById("directionFilter").value = state.filters.direction;
+            document.getElementById("driverFilter").value = state.filters.driver;
+            document.getElementById("horizonFilter").value = state.filters.horizon;
+        }
+
+        async function init() {
+            try {
+                const dataset = await loadDataset();
+                state.dataset = dataset;
+                state.groupedByDate = groupByDate(dataset.events);
+                state.months = [...new Set(dataset.events.map((event) => getMonthKey(event.date)))].sort();
+
+                if (state.months.length === 0) {
+                    renderEmpty("JSON 已加载，但暂无事件记录。");
+                    return;
+                }
+
+                renderStats(dataset);
+                buildFilterOptions();
+                syncFilterInputs();
+                renderFocus();
+                renderFilteredBoard();
+                buildMonthOptions(state.months);
+                renderMonth(state.months[state.months.length - 1]);
+
+                loadState.hidden = true;
+                calendarWrap.hidden = false;
+            } catch (error) {
+                const isFileProtocol = window.location.protocol === "file:";
+                const message = isFileProtocol
+                    ? "未能读取 JSON。你现在很可能是直接用 file:// 打开页面，浏览器拦截了本地 JSON 读取。请在当前目录运行 python3 -m http.server 后再访问。"
+                    : `未能读取 JSON：${error.message}`;
+                renderEmpty(message, true);
+            }
+        }
+
+        document.getElementById("prevMonth").addEventListener("click", () => stepMonth(-1));
+        document.getElementById("nextMonth").addEventListener("click", () => stepMonth(1));
+        monthSelect.addEventListener("change", (evt) => renderMonth(evt.target.value));
+
+        document.getElementById("instrumentFilter").addEventListener("change", (evt) => {
+            state.filters.instrument = evt.target.value;
+            renderFilteredBoard();
+        });
+        document.getElementById("directionFilter").addEventListener("change", (evt) => {
+            state.filters.direction = evt.target.value;
+            renderFilteredBoard();
+        });
+        document.getElementById("driverFilter").addEventListener("change", (evt) => {
+            state.filters.driver = evt.target.value;
+            renderFilteredBoard();
+        });
+        document.getElementById("horizonFilter").addEventListener("change", (evt) => {
+            state.filters.horizon = evt.target.value;
+            renderFilteredBoard();
+        });
+
+        document.getElementById("resetFilters").addEventListener("click", () => {
+            state.filters = {
+                instrument: "全部品种",
+                direction: "全部方向",
+                driver: "全部驱动",
+                horizon: "全部周期"
+            };
+            syncFilterInputs();
+            renderFilteredBoard();
+        });
+
+        document.getElementById("closeModal").addEventListener("click", () => detailModal.close());
+        detailModal.addEventListener("click", (evt) => {
+            const rect = detailModal.getBoundingClientRect();
+            const inDialog =
+                rect.top <= evt.clientY &&
+                evt.clientY <= rect.top + rect.height &&
+                rect.left <= evt.clientX &&
+                evt.clientX <= rect.left + rect.width;
+            if (!inDialog) {
+                detailModal.close();
+            }
+        });
+
+        init();
+    </script>
+</body>
+
+</html>
