@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原油四步周期学习图</title>
+  <style>
+    :root {
+      --bg: #f5efe2;
+      --panel: #fffaf0;
+      --ink: #1f2a22;
+      --muted: #5f6b61;
+      --grid: #d8cfbc;
+      --accent: #b1412c;
+      --accent-soft: #e8b28f;
+      --stage-1: #d95d39;
+      --stage-2: #d8a400;
+      --stage-3: #3e7a63;
+      --stage-4: #58708f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(217, 93, 57, 0.10), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(88, 112, 143, 0.12), transparent 30%),
+        linear-gradient(180deg, #fbf6ea 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+    }
+
+    .title {
+      margin: 0 0 10px;
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 0 0 20px;
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .board {
+      width: 100%;
+      border: 1px solid rgba(31, 42, 34, 0.10);
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(255, 250, 240, 0.96), rgba(250, 244, 230, 0.98));
+      box-shadow: 0 20px 60px rgba(31, 42, 34, 0.08);
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hint {
+      margin: 16px 0 0;
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="title">原油四步周期学习图</h1>
+    <p class="subtitle">用途：持续学习 + 交易指导。核心框架来自工作区 skill `crude-oil-phase-diagnosis`，当前判断日期写死为 2026-04-07，可后续直接修改页面数据。</p>
+    <div class="board">
+      <canvas id="board" width="1440" height="2100" aria-label="原油四步周期图"></canvas>
+    </div>
+    <p class="hint">阅读顺序：先看中心当前状态，再沿顺时针读四阶段，再看底部跟踪清单。页面无需联网即可打开。</p>
+  </div>
+
+  <script>
+    const model = {
+      title: "原油四步周期",
+      date: "2026-04-07",
+      object: "国际原油期货",
+      currentPhase: "预期发酵期",
+      currentPhaseIndex: 1,
+      currentBias: "主判断：预期发酵期；次判断：正在接近预期兑现期",
+      currentSummary: [
+        "主线仍集中在中东冲突、运输受阻、供给风险溢价",
+        "价格仍能沿主线强势维持，近端供给溢价没有明显塌陷",
+        "但增产与后续供给修复预期已经出现，利多继续扩张的难度正在上升"
+      ],
+      currentTrade: [
+        "推荐：顺主线，只做确认后的跟随，不逆势猜顶",
+        "推荐：缩短持有周期，分批进出，接受高波动",
+        "不推荐：在强趋势里提前重仓做反转",
+        "不推荐：把单条消息当成终局，忽略后续价格反应"
+      ],
+      watchList: [
+        "利多消息后是否还能创新高",
+        "回撤后是否还有资金继续承接",
+        "日内波动是否明显放大且来回扫损增多",
+        "主线是否从单一叙事转为多叙事混战",
+        "如果利多不涨，阶段就更接近预期兑现期"
+      ],
+      phases: [
+        {
+          name: "突发冲击期",
+          color: "#d95d39",
+          angleStart: -Math.PI * 0.95,
+          angleEnd: -Math.PI * 0.45,
+          core: "新事件突然改变供给、运输、制裁或战争风险，价格在 1 到 3 个交易日急变。",
+          signals: [
+            "跳空或单日异常大涨大跌",
+            "盘中大幅反转，新闻密度极高",
+            "市场先抢反应，后补理解"
+          ],
+          action: [
+            "轻仓或者空仓等待确认",
+            "不追第一腿，不和冲击波硬碰硬"
+          ],
+          avoid: [
+            "满仓追单",
+            "把第一反应误当成稳定趋势"
+          ],
+          switchToNext: "如果同一主线持续被市场重复交易，回撤后仍有承接，进入预期发酵期。",
+          error: "最容易错把短时冲击当成趋势起点，或者在信息不完整时做确定性判断。 "
+        },
+        {
+          name: "预期发酵期",
+          color: "#d8a400",
+          angleStart: -Math.PI * 0.45,
+          angleEnd: Math.PI * 0.05,
+          core: "市场围绕一条主线持续定价，回撤常被买起，新闻继续强化同方向交易。",
+          signals: [
+            "同一叙事反复主导市场",
+            "回撤后还能延续方向",
+            "新消息还能推动新高或新低"
+          ],
+          action: [
+            "只顺主线做确认跟随",
+            "等待回撤后重新发力再参与"
+          ],
+          avoid: [
+            "提前猜顶猜底",
+            "因为涨多了就逆势重仓"
+          ],
+          switchToNext: "如果故事仍在，但利多不再有效推高，价格进入宽幅双向波动，进入预期兑现期。",
+          error: "最容易错在把强趋势里的正常回撤误判成顶部。"
+        },
+        {
+          name: "预期兑现期",
+          color: "#3e7a63",
+          angleStart: Math.PI * 0.05,
+          angleEnd: Math.PI * 0.55,
+          core: "原来的故事没有消失，但价格走在前面，继续扩张越来越难，市场开始双向拉扯。",
+          signals: [
+            "利多不涨或利空不跌",
+            "高位或低位来回宽震荡",
+            "延续性下降，波动率居高"
+          ],
+          action: [
+            "降低持有预期，改做快进快出",
+            "更重视纪律和止损，不恋战"
+          ],
+          avoid: [
+            "按前一阶段的趋势节奏长期持有",
+            "把来回震荡误认成二次主升"
+          ],
+          switchToNext: "如果旧主线继续钝化，消息与价格脱节，结构变乱，就进入情绪退潮期。",
+          error: "最容易错在还按趋势思维操作，结果不断被震荡消耗。"
+        },
+        {
+          name: "情绪退潮期",
+          color: "#58708f",
+          angleStart: Math.PI * 0.55,
+          angleEnd: Math.PI * 1.05,
+          core: "新闻仍然存在，但市场不再稳定沿旧主线响应，结构混乱，扫损频繁。",
+          signals: [
+            "同样的消息不再产生同样的价格反应",
+            "方向混乱，止损位反复被扫",
+            "市场开始等待下一条新主线"
+          ],
+          action: [
+            "减少交易甚至空仓观察",
+            "只在结构特别清晰时出手"
+          ],
+          avoid: [
+            "在无主线阶段频繁交易",
+            "把杂乱波动硬解释成趋势"
+          ],
+          switchToNext: "如果新的供给、政策、战争、运输事件突然出现，再次回到突发冲击期。",
+          error: "最容易错在因为寂寞而交易，或者把噪音当信号。"
+        }
+      ]
+    };
+
+    const canvas = document.getElementById("board");
+    const ctx = canvas.getContext("2d");
+
+    function roundedRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function drawWrappedText(text, x, y, maxWidth, lineHeight, color, font, weight = "") {
+      ctx.fillStyle = color;
+      ctx.font = weight ? `${weight} ${font}` : font;
+      const chars = text.split("");
+      let line = "";
+      let cursorY = y;
+
+      for (const ch of chars) {
+        const test = line + ch;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          ctx.fillText(line, x, cursorY);
+          line = ch;
+          cursorY += lineHeight;
+        } else {
+          line = test;
+        }
+      }
+      if (line) {
+        ctx.fillText(line, x, cursorY);
+        cursorY += lineHeight;
+      }
+      return cursorY;
+    }
+
+    /** 与 drawWrappedText 相同的换行规则，用于测量高度 */
+    function measureWrappedLines(text, maxWidth, fontSpec) {
+      ctx.font = fontSpec;
+      let line = "";
+      let lines = 0;
+      for (const ch of text.split("")) {
+        const test = line + ch;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines++;
+          line = ch;
+        } else {
+          line = test;
+        }
+      }
+      if (line) lines++;
+      return Math.max(1, lines);
+    }
+
+    function estimateBulletBlockHeight(items, w) {
+      const bodyFont = "16px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      const textW = w - 56;
+      const lineHeight = 24;
+      let bodyH = 0;
+      items.forEach((item) => {
+        const lines = measureWrappedLines(item, textW, bodyFont);
+        bodyH += lines * lineHeight + 8;
+      });
+      return Math.max(120, 18 + 30 + 18 + bodyH + 18);
+    }
+
+    /** 返回块高度（像素） */
+    function drawBulletBlock(title, items, x, y, w, palette) {
+      ctx.save();
+      ctx.textAlign = "left";
+      ctx.textBaseline = "alphabetic";
+      const bodyFont = "16px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      const textW = w - 56;
+      const lineHeight = 24;
+      let bodyH = 0;
+      items.forEach((item) => {
+        const lines = measureWrappedLines(item, textW, bodyFont);
+        bodyH += lines * lineHeight + 8;
+      });
+      const blockH = Math.max(120, 18 + 30 + 18 + bodyH + 18);
+
+      roundedRect(x, y, w, blockH, 18);
+      ctx.fillStyle = palette.fill;
+      ctx.fill();
+      ctx.strokeStyle = palette.stroke;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.fillStyle = palette.title;
+      ctx.font = "700 20px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText(title, x + 18, y + 30);
+
+      let textY = y + 58;
+      items.forEach((item) => {
+        ctx.fillStyle = palette.dot;
+        ctx.beginPath();
+        ctx.arc(x + 24, textY - 5, 4, 0, Math.PI * 2);
+        ctx.fill();
+        textY = drawWrappedText(item, x + 38, textY, textW, lineHeight, "#29352c", bodyFont);
+        textY += 8;
+      });
+      ctx.restore();
+      return blockH;
+    }
+
+    function drawPhaseCard(phase, x, y, w, h, active = false) {
+      ctx.save();
+      ctx.textAlign = "left";
+      ctx.textBaseline = "alphabetic";
+      roundedRect(x, y, w, h, 24);
+      ctx.fillStyle = active ? phase.color + "18" : "rgba(255,250,240,0.88)";
+      ctx.fill();
+      ctx.strokeStyle = active ? phase.color : "rgba(31,42,34,0.14)";
+      ctx.lineWidth = active ? 3 : 1.2;
+      ctx.stroke();
+
+      ctx.fillStyle = phase.color;
+      ctx.font = "700 24px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText(phase.name, x + 20, y + 34);
+
+      let cursor = y + 64;
+      ctx.fillStyle = "#1f2a22";
+      ctx.font = "700 16px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("核心", x + 20, cursor);
+      cursor = drawWrappedText(phase.core, x + 20, cursor + 24, w - 40, 23, "#29352c", "15px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif");
+      cursor += 8;
+
+      const sections = [
+        ["判断信号", phase.signals],
+        ["推荐动作", phase.action],
+        ["不要做", phase.avoid]
+      ];
+
+      sections.forEach(([label, items]) => {
+        ctx.fillStyle = "#314036";
+        ctx.font = "700 15px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+        ctx.fillText(label, x + 20, cursor);
+        cursor += 22;
+        items.forEach((item) => {
+          ctx.fillStyle = phase.color;
+          ctx.beginPath();
+          ctx.arc(x + 25, cursor - 6, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+          cursor = drawWrappedText(item, x + 36, cursor, w - 56, 21, "#334138", "14px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif");
+          cursor += 4;
+        });
+        cursor += 4;
+      });
+
+      ctx.fillStyle = "#314036";
+      ctx.font = "700 15px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("进入下一阶段", x + 20, cursor);
+      cursor = drawWrappedText(phase.switchToNext, x + 20, cursor + 22, w - 40, 21, "#334138", "14px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif");
+      cursor += 14;
+      ctx.fillText("常见误判", x + 20, cursor);
+      cursor = drawWrappedText(phase.error, x + 20, cursor + 22, w - 40, 21, "#334138", "14px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif");
+      ctx.restore();
+    }
+
+    function drawCycle(cx, cy, radiusOuter, radiusInner) {
+      model.phases.forEach((phase, index) => {
+        ctx.beginPath();
+        ctx.arc(cx, cy, radiusOuter, phase.angleStart, phase.angleEnd);
+        ctx.arc(cx, cy, radiusInner, phase.angleEnd, phase.angleStart, true);
+        ctx.closePath();
+        ctx.fillStyle = index === model.currentPhaseIndex ? phase.color : phase.color + "a8";
+        ctx.fill();
+
+        ctx.strokeStyle = "#fbf6ea";
+        ctx.lineWidth = 7;
+        ctx.stroke();
+
+        const angle = (phase.angleStart + phase.angleEnd) / 2;
+        const tx = cx + Math.cos(angle) * ((radiusOuter + radiusInner) / 2);
+        const ty = cy + Math.sin(angle) * ((radiusOuter + radiusInner) / 2);
+
+        ctx.save();
+        ctx.translate(tx, ty);
+        ctx.rotate(angle + Math.PI / 2);
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#fffaf0";
+        ctx.font = "700 24px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+        ctx.fillText(phase.name, 0, 8);
+        ctx.restore();
+      });
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, radiusInner - 18, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(255,250,240,0.98)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(31,42,34,0.10)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#1f2a22";
+      ctx.font = "700 22px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("当前状态", cx, cy - 110);
+      ctx.fillStyle = model.phases[model.currentPhaseIndex].color;
+      ctx.font = "700 42px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText(model.currentPhase, cx, cy - 54);
+      ctx.fillStyle = "#405046";
+      ctx.font = "600 18px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText(model.currentBias, cx, cy - 18);
+      ctx.fillStyle = "#5b665e";
+      ctx.font = "14px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText(`对象：${model.object}    判断日：${model.date}`, cx, cy + 12);
+
+      ctx.textAlign = "left";
+      const summaryBlockW = 330;
+      const summaryLeft = cx - summaryBlockW / 2;
+      const summaryTextX = summaryLeft + 20;
+      const summaryBulletX = summaryLeft + 6;
+      const summaryTextMaxW = summaryBlockW - 36;
+      let summaryY = cy + 52;
+      model.currentSummary.forEach((line) => {
+        ctx.fillStyle = model.phases[model.currentPhaseIndex].color;
+        ctx.beginPath();
+        ctx.arc(summaryBulletX, summaryY - 6, 4, 0, Math.PI * 2);
+        ctx.fill();
+        summaryY = drawWrappedText(line, summaryTextX, summaryY, summaryTextMaxW, 22, "#2f3b33", "15px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif");
+        summaryY += 6;
+      });
+
+      ctx.strokeStyle = "rgba(31,42,34,0.12)";
+      ctx.setLineDash([7, 10]);
+      ctx.beginPath();
+      ctx.arc(cx, cy, radiusOuter + 28, -Math.PI * 0.95, Math.PI * 1.05);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      model.phases.forEach((phase) => {
+        const angle = (phase.angleStart + phase.angleEnd) / 2;
+        const x1 = cx + Math.cos(angle) * (radiusOuter + 10);
+        const y1 = cy + Math.sin(angle) * (radiusOuter + 10);
+        const x2 = cx + Math.cos(angle) * (radiusOuter + 55);
+        const y2 = cy + Math.sin(angle) * (radiusOuter + 55);
+        ctx.strokeStyle = "rgba(31,42,34,0.18)";
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      });
+
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#5f6b61";
+      ctx.font = "15px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("四阶段循环：事件冲击 -> 预期发酵 -> 预期兑现 -> 情绪退潮 -> 下一轮新事件", cx, cy + 196);
+    }
+
+    function drawHeader() {
+      ctx.textAlign = "left";
+      ctx.textBaseline = "alphabetic";
+      ctx.fillStyle = "#1f2a22";
+      ctx.font = "700 42px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("原油四步周期全景图", 60, 72);
+      ctx.fillStyle = "#5f6b61";
+      ctx.font = "18px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("目标：在一张图里同时回答“现在在哪个阶段、为什么这样判断、该怎么做、下一步怎么跟踪”。", 60, 106);
+
+      roundedRect(1020, 34, 360, 88, 18);
+      ctx.fillStyle = "rgba(177,65,44,0.08)";
+      ctx.fill();
+      ctx.strokeStyle = "rgba(177,65,44,0.22)";
+      ctx.stroke();
+      ctx.fillStyle = "#8f3627";
+      ctx.font = "700 18px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("核心判断原则", 1042, 64);
+      ctx.fillStyle = "#344238";
+      ctx.font = "15px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("先看市场行为，再看新闻强度。", 1042, 90);
+      ctx.fillText("判断阶段时，以价格对同类消息的反应方式为准。", 1042, 112);
+    }
+
+    function drawFooter(y) {
+      const h1 = drawBulletBlock("当前阶段下的推荐操作", model.currentTrade, 60, y, 640, {
+        fill: "rgba(216,164,0,0.10)",
+        stroke: "rgba(216,164,0,0.28)",
+        title: "#8f6d00",
+        dot: "#b98e00"
+      });
+
+      const h2 = drawBulletBlock("持续跟踪清单", model.watchList, 740, y, 640, {
+        fill: "rgba(88,112,143,0.10)",
+        stroke: "rgba(88,112,143,0.24)",
+        title: "#44607c",
+        dot: "#58708f"
+      });
+
+      const blockH = Math.max(h1, h2);
+      const noteY = y + blockH + 28;
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#5f6b61";
+      ctx.font = "14px PingFang SC, Noto Sans SC, Microsoft YaHei, sans-serif";
+      ctx.fillText("使用方式：每天只更新“当前状态 / 当前摘要 / 跟踪清单”三处，就能持续复盘，不必重画逻辑。", 60, noteY);
+      ctx.fillText("当前结论适用于 2026-04-07 这一天的外部环境判断，不构成收益承诺。", 60, noteY + 26);
+    }
+
+    const LAYOUT = {
+      baseW: 1440,
+      minCanvasH: 2100,
+      cardsY: 765,
+      cardH: 460,
+      cardRowGap: 20
+    };
+
+    function render() {
+      const { baseW, minCanvasH, cardsY, cardH, cardRowGap } = LAYOUT;
+      const row2Y = cardsY + cardH + cardRowGap;
+      const footerY = row2Y + cardH + 28;
+      const bulletH = Math.max(
+        estimateBulletBlockHeight(model.currentTrade, 640),
+        estimateBulletBlockHeight(model.watchList, 640)
+      );
+      const baseH = Math.max(
+        minCanvasH,
+        footerY + bulletH + 28 + 26 + 26 + 36
+      );
+
+      const ratio = window.devicePixelRatio || 1;
+      const cssWidth = canvas.clientWidth || 1440;
+      const cssHeight = Math.round(cssWidth * baseH / baseW);
+      canvas.width = cssWidth * ratio;
+      canvas.height = cssHeight * ratio;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      ctx.clearRect(0, 0, cssWidth, cssHeight);
+
+      const scale = cssWidth / baseW;
+      ctx.scale(scale, scale);
+
+      drawHeader();
+      drawCycle(720, 470, 270, 170);
+
+      drawPhaseCard(model.phases[0], 60, cardsY, 640, cardH, false);
+      drawPhaseCard(model.phases[1], 740, cardsY, 640, cardH, true);
+      drawPhaseCard(model.phases[2], 60, row2Y, 640, cardH, false);
+      drawPhaseCard(model.phases[3], 740, row2Y, 640, cardH, false);
+      drawFooter(footerY);
+    }
+
+    window.addEventListener("resize", render);
+    render();
+  </script>
+</body>
+</html>

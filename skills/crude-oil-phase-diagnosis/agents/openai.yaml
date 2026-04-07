@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crude Oil Phase Diagnosis"
+  short_description: "Classify oil futures by regime and response"
+  default_prompt: "Use $crude-oil-phase-diagnosis to identify the current crude oil trading phase and map it to an appropriate strategy response."
