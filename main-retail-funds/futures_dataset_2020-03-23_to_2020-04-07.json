@@ -1,0 +1,1593 @@
+{
+  "source_markdown": "/Users/zxxk/ysd/ysdproject/notes/过去10天的数据。.md",
+  "trade_dates": [
+    "2020-03-23",
+    "2020-03-24",
+    "2020-03-25",
+    "2020-03-26",
+    "2020-03-27",
+    "2020-03-30",
+    "2020-03-31",
+    "2020-04-01",
+    "2020-04-02",
+    "2020-04-03",
+    "2020-04-07"
+  ],
+  "trade_dates_inference": "Inferred as 2020-03-23 to 2020-04-07 from weekday labels and the Qingming holiday note in the markdown.",
+  "instruments": [
+    {
+      "variety_name": "铁矿石",
+      "symbol": "im",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 629.0,
+          "close_price_status": "ok",
+          "main_funds": 26.29,
+          "retail_funds": -6.42
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 639.5,
+          "close_price_status": "ok",
+          "main_funds": 24.1,
+          "retail_funds": -8.23
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 665.0,
+          "close_price_status": "ok",
+          "main_funds": 16.8,
+          "retail_funds": -8.01
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 662.0,
+          "close_price_status": "ok",
+          "main_funds": 12.99,
+          "retail_funds": -7.6
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 659.0,
+          "close_price_status": "ok",
+          "main_funds": 7.91,
+          "retail_funds": -5.74
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 645.5,
+          "close_price_status": "ok",
+          "main_funds": 1.68,
+          "retail_funds": -4.37
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 650.5,
+          "close_price_status": "ok",
+          "main_funds": -6.19,
+          "retail_funds": -2.81
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 557.5,
+          "close_price_status": "ok",
+          "main_funds": -4.4,
+          "retail_funds": -2.36
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 577.5,
+          "close_price_status": "ok",
+          "main_funds": -10.57,
+          "retail_funds": -0.64
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 568.0,
+          "close_price_status": "ok",
+          "main_funds": -13.76,
+          "retail_funds": 2.55
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 569.5,
+          "close_price_status": "ok",
+          "main_funds": -15.75,
+          "retail_funds": 5.4
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "螺纹钢",
+      "symbol": "rbm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 3400.0,
+          "close_price_status": "ok",
+          "main_funds": 11.2,
+          "retail_funds": 0.61
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 3435.0,
+          "close_price_status": "ok",
+          "main_funds": 12.94,
+          "retail_funds": 1.54
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 3463.0,
+          "close_price_status": "ok",
+          "main_funds": 7.88,
+          "retail_funds": 2.85
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 3341.0,
+          "close_price_status": "ok",
+          "main_funds": 6.52,
+          "retail_funds": 4.41
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 3329.0,
+          "close_price_status": "ok",
+          "main_funds": 5.38,
+          "retail_funds": 6.71
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 3242.0,
+          "close_price_status": "ok",
+          "main_funds": 0.47,
+          "retail_funds": 6.79
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 3233.0,
+          "close_price_status": "ok",
+          "main_funds": -4.15,
+          "retail_funds": 7.01
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 3169.0,
+          "close_price_status": "ok",
+          "main_funds": -5.28,
+          "retail_funds": 5.43
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 3229.0,
+          "close_price_status": "ok",
+          "main_funds": -12.64,
+          "retail_funds": 5.78
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 3189.0,
+          "close_price_status": "ok",
+          "main_funds": -14.02,
+          "retail_funds": 8.41
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 3206.0,
+          "close_price_status": "ok",
+          "main_funds": -19.48,
+          "retail_funds": 12.19
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "热卷",
+      "symbol": "hcm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 3257.0,
+          "close_price_status": "ok",
+          "main_funds": 22.93,
+          "retail_funds": -1.57
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 3329.0,
+          "close_price_status": "ok",
+          "main_funds": 24,
+          "retail_funds": -0.94
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 3314.0,
+          "close_price_status": "ok",
+          "main_funds": 21.47,
+          "retail_funds": 0.06
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 3294.0,
+          "close_price_status": "ok",
+          "main_funds": 19.71,
+          "retail_funds": 1.56
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 3306.0,
+          "close_price_status": "ok",
+          "main_funds": 18.45,
+          "retail_funds": 3.62
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 3079.0,
+          "close_price_status": "ok",
+          "main_funds": 11.39,
+          "retail_funds": 4
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 3071.0,
+          "close_price_status": "ok",
+          "main_funds": 5.76,
+          "retail_funds": 4.59
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 2999.0,
+          "close_price_status": "ok",
+          "main_funds": 0.81,
+          "retail_funds": 5.76
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 3078.0,
+          "close_price_status": "ok",
+          "main_funds": 9.23,
+          "retail_funds": 8.2
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 3035.0,
+          "close_price_status": "ok",
+          "main_funds": -13.28,
+          "retail_funds": 11.67
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 3063.0,
+          "close_price_status": "ok",
+          "main_funds": -20.53,
+          "retail_funds": 15.06
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "锰硅",
+      "symbol": "smm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 6268.0,
+          "close_price_status": "ok",
+          "main_funds": 29.13,
+          "retail_funds": -27.21
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 6470.0,
+          "close_price_status": "ok",
+          "main_funds": 33.44,
+          "retail_funds": -30.26
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 6596.0,
+          "close_price_status": "ok",
+          "main_funds": 34.4,
+          "retail_funds": -30.64
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 6950.0,
+          "close_price_status": "ok",
+          "main_funds": 34.62,
+          "retail_funds": -25.67
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 6940.0,
+          "close_price_status": "ok",
+          "main_funds": 27.06,
+          "retail_funds": -21.46
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 6952.0,
+          "close_price_status": "ok",
+          "main_funds": 33.06,
+          "retail_funds": -20.23
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 6926.0,
+          "close_price_status": "ok",
+          "main_funds": 9.83,
+          "retail_funds": -17.44
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 6686.0,
+          "close_price_status": "ok",
+          "main_funds": 1.46,
+          "retail_funds": -12.56
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 6780.0,
+          "close_price_status": "ok",
+          "main_funds": 1.38,
+          "retail_funds": -9.64
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 6708.0,
+          "close_price_status": "ok",
+          "main_funds": -2.72,
+          "retail_funds": -6.24
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 6748.0,
+          "close_price_status": "ok",
+          "main_funds": -6.88,
+          "retail_funds": -2.67
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "沪铜",
+      "symbol": "cum",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 37200.0,
+          "close_price_status": "ok",
+          "main_funds": -50,
+          "retail_funds": 7
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 38200.0,
+          "close_price_status": "ok",
+          "main_funds": -45,
+          "retail_funds": 6
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 39360.0,
+          "close_price_status": "ok",
+          "main_funds": -38,
+          "retail_funds": 3
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 38870.0,
+          "close_price_status": "ok",
+          "main_funds": -26,
+          "retail_funds": 1
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 39180.0,
+          "close_price_status": "ok",
+          "main_funds": -14,
+          "retail_funds": 0
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 38720.0,
+          "close_price_status": "ok",
+          "main_funds": -4,
+          "retail_funds": 0
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 39150.0,
+          "close_price_status": "ok",
+          "main_funds": 0,
+          "retail_funds": 0
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 39000.0,
+          "close_price_status": "ok",
+          "main_funds": 5,
+          "retail_funds": 0
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 39650.0,
+          "close_price_status": "ok",
+          "main_funds": 8,
+          "retail_funds": 0
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 39930.0,
+          "close_price_status": "ok",
+          "main_funds": 9,
+          "retail_funds": 0
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 40600.0,
+          "close_price_status": "ok",
+          "main_funds": 12,
+          "retail_funds": 0
+        },
+        {
+          "index": 11,
+          "trade_date": null,
+          "close_price": null,
+          "close_price_status": "no_trade_date",
+          "main_funds": 10,
+          "retail_funds": null,
+          "close_price_message": "No aligned trade date"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 12,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "沪铝",
+      "symbol": "alm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 11345.0,
+          "close_price_status": "ok",
+          "main_funds": -32,
+          "retail_funds": 18
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 11435.0,
+          "close_price_status": "ok",
+          "main_funds": -37,
+          "retail_funds": 23
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 11700.0,
+          "close_price_status": "ok",
+          "main_funds": -37,
+          "retail_funds": 22
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 11640.0,
+          "close_price_status": "ok",
+          "main_funds": -33,
+          "retail_funds": 19
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 11740.0,
+          "close_price_status": "ok",
+          "main_funds": -17,
+          "retail_funds": 14
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 11515.0,
+          "close_price_status": "ok",
+          "main_funds": 38,
+          "retail_funds": 6
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 11590.0,
+          "close_price_status": "ok",
+          "main_funds": 29,
+          "retail_funds": -1
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 11445.0,
+          "close_price_status": "ok",
+          "main_funds": 36,
+          "retail_funds": -5
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 11475.0,
+          "close_price_status": "ok",
+          "main_funds": 37,
+          "retail_funds": -9
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 11545.0,
+          "close_price_status": "ok",
+          "main_funds": 27,
+          "retail_funds": -9
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 11620.0,
+          "close_price_status": "ok",
+          "main_funds": null,
+          "retail_funds": -7
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 10,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "沪锌",
+      "symbol": "znm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 14630.0,
+          "close_price_status": "ok",
+          "main_funds": -56,
+          "retail_funds": 4
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 14895.0,
+          "close_price_status": "ok",
+          "main_funds": -53,
+          "retail_funds": 3
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 14905.0,
+          "close_price_status": "ok",
+          "main_funds": -47,
+          "retail_funds": 2
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 14860.0,
+          "close_price_status": "ok",
+          "main_funds": -35,
+          "retail_funds": 1
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 15385.0,
+          "close_price_status": "ok",
+          "main_funds": -15,
+          "retail_funds": 0
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 15080.0,
+          "close_price_status": "ok",
+          "main_funds": 0,
+          "retail_funds": -1
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 15175.0,
+          "close_price_status": "ok",
+          "main_funds": 10,
+          "retail_funds": -2
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 15140.0,
+          "close_price_status": "ok",
+          "main_funds": 21,
+          "retail_funds": -3
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 15415.0,
+          "close_price_status": "ok",
+          "main_funds": 31,
+          "retail_funds": -4
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 15560.0,
+          "close_price_status": "ok",
+          "main_funds": 32,
+          "retail_funds": -4
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 15845.0,
+          "close_price_status": "ok",
+          "main_funds": 28,
+          "retail_funds": -4
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "沪锡",
+      "symbol": "snm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 107360.0,
+          "close_price_status": "ok",
+          "main_funds": -41,
+          "retail_funds": 5
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 113990.0,
+          "close_price_status": "ok",
+          "main_funds": -39,
+          "retail_funds": 5
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 116760.0,
+          "close_price_status": "ok",
+          "main_funds": -32,
+          "retail_funds": 4
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 115440.0,
+          "close_price_status": "ok",
+          "main_funds": -22,
+          "retail_funds": 3
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 119400.0,
+          "close_price_status": "ok",
+          "main_funds": -8,
+          "retail_funds": 0
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 118800.0,
+          "close_price_status": "ok",
+          "main_funds": 4,
+          "retail_funds": -2
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 120650.0,
+          "close_price_status": "ok",
+          "main_funds": 12,
+          "retail_funds": -3
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 121290.0,
+          "close_price_status": "ok",
+          "main_funds": 17,
+          "retail_funds": -5
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 119970.0,
+          "close_price_status": "ok",
+          "main_funds": 15,
+          "retail_funds": -4
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 120580.0,
+          "close_price_status": "ok",
+          "main_funds": 10,
+          "retail_funds": -3
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 121240.0,
+          "close_price_status": "ok",
+          "main_funds": 5,
+          "retail_funds": -3
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "工业硅",
+      "symbol": "sim",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -22,
+          "retail_funds": 1,
+          "close_price_message": "No row returned for 2020-03-23"
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -16,
+          "retail_funds": -1,
+          "close_price_message": "No row returned for 2020-03-24"
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -2,
+          "retail_funds": -5,
+          "close_price_message": "No row returned for 2020-03-25"
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 11,
+          "retail_funds": -6,
+          "close_price_message": "No row returned for 2020-03-26"
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 13,
+          "retail_funds": -6,
+          "close_price_message": "No row returned for 2020-03-27"
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 3,
+          "retail_funds": -3,
+          "close_price_message": "No row returned for 2020-03-30"
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -6,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-31"
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -19,
+          "retail_funds": 4,
+          "close_price_message": "No row returned for 2020-04-01"
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -29,
+          "retail_funds": 7,
+          "close_price_message": "No row returned for 2020-04-02"
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -34,
+          "retail_funds": 9,
+          "close_price_message": "No row returned for 2020-04-03"
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -33,
+          "retail_funds": 11,
+          "close_price_message": "No row returned for 2020-04-07"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "多晶硅",
+      "symbol": "psm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -27,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-23"
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -35,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-24"
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -35,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-25"
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -28,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-26"
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -28,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-27"
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -18,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-30"
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -11,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-31"
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -12,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-04-01"
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -13,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-04-02"
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -14,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-04-03"
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -22,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-04-07"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "碳酸锂",
+      "symbol": "lcm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -25,
+          "retail_funds": 2,
+          "close_price_message": "No row returned for 2020-03-23"
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -26,
+          "retail_funds": 0,
+          "close_price_message": "No row returned for 2020-03-24"
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -17,
+          "retail_funds": -4,
+          "close_price_message": "No row returned for 2020-03-25"
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -3,
+          "retail_funds": -6,
+          "close_price_message": "No row returned for 2020-03-26"
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 10,
+          "retail_funds": -8,
+          "close_price_message": "No row returned for 2020-03-27"
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 26,
+          "retail_funds": -10,
+          "close_price_message": "No row returned for 2020-03-30"
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 22,
+          "retail_funds": -9,
+          "close_price_message": "No row returned for 2020-03-31"
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 13,
+          "retail_funds": -9,
+          "close_price_message": "No row returned for 2020-04-01"
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 7,
+          "retail_funds": -9,
+          "close_price_message": "No row returned for 2020-04-02"
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -3,
+          "retail_funds": -9,
+          "close_price_message": "No row returned for 2020-04-03"
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -10,
+          "retail_funds": -9,
+          "close_price_message": "No row returned for 2020-04-07"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 11,
+        "retail_funds_count": 11,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "氧化铝",
+      "symbol": "aom",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 24,
+          "retail_funds": -21,
+          "close_price_message": "No row returned for 2020-03-23"
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 16,
+          "retail_funds": -17,
+          "close_price_message": "No row returned for 2020-03-24"
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": 4,
+          "retail_funds": -12,
+          "close_price_message": "No row returned for 2020-03-25"
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -5,
+          "retail_funds": -4,
+          "close_price_message": "No row returned for 2020-03-26"
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -10,
+          "retail_funds": 5,
+          "close_price_message": "No row returned for 2020-03-27"
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -19,
+          "retail_funds": 9,
+          "close_price_message": "No row returned for 2020-03-30"
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -30,
+          "retail_funds": 12,
+          "close_price_message": "No row returned for 2020-03-31"
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -37,
+          "retail_funds": 15,
+          "close_price_message": "No row returned for 2020-04-01"
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -43,
+          "retail_funds": 15,
+          "close_price_message": "No row returned for 2020-04-02"
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -46,
+          "retail_funds": 15,
+          "close_price_message": "No row returned for 2020-04-03"
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": null,
+          "close_price_status": "no_data",
+          "main_funds": -52,
+          "retail_funds": 15,
+          "close_price_message": "No row returned for 2020-04-07"
+        },
+        {
+          "index": 11,
+          "trade_date": null,
+          "close_price": null,
+          "close_price_status": "no_trade_date",
+          "main_funds": -55,
+          "retail_funds": 14,
+          "close_price_message": "No aligned trade date"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 12,
+        "retail_funds_count": 12,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "沪镍",
+      "symbol": "nim",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 91920.0,
+          "close_price_status": "ok",
+          "main_funds": -22,
+          "retail_funds": 14
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 91690.0,
+          "close_price_status": "ok",
+          "main_funds": -23,
+          "retail_funds": 12
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 91890.0,
+          "close_price_status": "ok",
+          "main_funds": -21,
+          "retail_funds": 5
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 91580.0,
+          "close_price_status": "ok",
+          "main_funds": -11,
+          "retail_funds": 2
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 93440.0,
+          "close_price_status": "ok",
+          "main_funds": -2,
+          "retail_funds": -1
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 93210.0,
+          "close_price_status": "ok",
+          "main_funds": 3,
+          "retail_funds": -5
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 91830.0,
+          "close_price_status": "ok",
+          "main_funds": 4,
+          "retail_funds": -6
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 92680.0,
+          "close_price_status": "ok",
+          "main_funds": 3,
+          "retail_funds": -5
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 92900.0,
+          "close_price_status": "ok",
+          "main_funds": -2,
+          "retail_funds": -1
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 92640.0,
+          "close_price_status": "ok",
+          "main_funds": -6,
+          "retail_funds": 1
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 93330.0,
+          "close_price_status": "ok",
+          "main_funds": -6,
+          "retail_funds": 3
+        },
+        {
+          "index": 11,
+          "trade_date": null,
+          "close_price": null,
+          "close_price_status": "no_trade_date",
+          "main_funds": -9,
+          "retail_funds": 4,
+          "close_price_message": "No aligned trade date"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 12,
+        "retail_funds_count": 12,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "黄金",
+      "symbol": "aum",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 339.62,
+          "close_price_status": "ok",
+          "main_funds": -60,
+          "retail_funds": 12
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 358.46,
+          "close_price_status": "ok",
+          "main_funds": -60,
+          "retail_funds": 12
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 364.4,
+          "close_price_status": "ok",
+          "main_funds": -54,
+          "retail_funds": 9
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 363.34,
+          "close_price_status": "ok",
+          "main_funds": -47,
+          "retail_funds": 7
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 367.58,
+          "close_price_status": "ok",
+          "main_funds": -38,
+          "retail_funds": 3
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 364.7,
+          "close_price_status": "ok",
+          "main_funds": -19,
+          "retail_funds": -1
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 364.9,
+          "close_price_status": "ok",
+          "main_funds": -3,
+          "retail_funds": -7
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 358.62,
+          "close_price_status": "ok",
+          "main_funds": 7,
+          "retail_funds": -13
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 360.7,
+          "close_price_status": "ok",
+          "main_funds": 15,
+          "retail_funds": -15
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 363.48,
+          "close_price_status": "ok",
+          "main_funds": 22,
+          "retail_funds": -15
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 373.88,
+          "close_price_status": "ok",
+          "main_funds": 25,
+          "retail_funds": -14
+        },
+        {
+          "index": 11,
+          "trade_date": null,
+          "close_price": null,
+          "close_price_status": "no_trade_date",
+          "main_funds": 23,
+          "retail_funds": -12,
+          "close_price_message": "No aligned trade date"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 12,
+        "retail_funds_count": 12,
+        "aligned_trade_dates_count": 11
+      }
+    },
+    {
+      "variety_name": "白银",
+      "symbol": "agm",
+      "records": [
+        {
+          "index": 0,
+          "trade_date": "2020-03-23",
+          "close_price": 3121.0,
+          "close_price_status": "ok",
+          "main_funds": -51,
+          "retail_funds": 52
+        },
+        {
+          "index": 1,
+          "trade_date": "2020-03-24",
+          "close_price": 3335.0,
+          "close_price_status": "ok",
+          "main_funds": -50,
+          "retail_funds": 54
+        },
+        {
+          "index": 2,
+          "trade_date": "2020-03-25",
+          "close_price": 3538.0,
+          "close_price_status": "ok",
+          "main_funds": -43,
+          "retail_funds": 44
+        },
+        {
+          "index": 3,
+          "trade_date": "2020-03-26",
+          "close_price": 3514.0,
+          "close_price_status": "ok",
+          "main_funds": -34,
+          "retail_funds": 33
+        },
+        {
+          "index": 4,
+          "trade_date": "2020-03-27",
+          "close_price": 3564.0,
+          "close_price_status": "ok",
+          "main_funds": -24,
+          "retail_funds": 19
+        },
+        {
+          "index": 5,
+          "trade_date": "2020-03-30",
+          "close_price": 3364.0,
+          "close_price_status": "ok",
+          "main_funds": -11,
+          "retail_funds": 2
+        },
+        {
+          "index": 6,
+          "trade_date": "2020-03-31",
+          "close_price": 3433.0,
+          "close_price_status": "ok",
+          "main_funds": 1,
+          "retail_funds": -15
+        },
+        {
+          "index": 7,
+          "trade_date": "2020-04-01",
+          "close_price": 3402.0,
+          "close_price_status": "ok",
+          "main_funds": 7,
+          "retail_funds": -34
+        },
+        {
+          "index": 8,
+          "trade_date": "2020-04-02",
+          "close_price": 3491.0,
+          "close_price_status": "ok",
+          "main_funds": 6,
+          "retail_funds": -40
+        },
+        {
+          "index": 9,
+          "trade_date": "2020-04-03",
+          "close_price": 3553.0,
+          "close_price_status": "ok",
+          "main_funds": 7,
+          "retail_funds": -43
+        },
+        {
+          "index": 10,
+          "trade_date": "2020-04-07",
+          "close_price": 3764.0,
+          "close_price_status": "ok",
+          "main_funds": 6,
+          "retail_funds": -43
+        },
+        {
+          "index": 11,
+          "trade_date": null,
+          "close_price": null,
+          "close_price_status": "no_trade_date",
+          "main_funds": -1,
+          "retail_funds": -39,
+          "close_price_message": "No aligned trade date"
+        }
+      ],
+      "metadata": {
+        "main_funds_count": 12,
+        "retail_funds_count": 12,
+        "aligned_trade_dates_count": 11
+      }
+    }
+  ]
+}

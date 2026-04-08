@@ -1,0 +1,415 @@
+{
+  "week": "2026-W13",
+  "meta": {
+    "title": "市场报道情绪事件库",
+    "version": 2,
+    "updated_at": "2026-04-07",
+    "description": "记录国泰君安等市场报道、研报、分析文本中的情绪、驱动与交易线索，服务于期货盘前观察与复盘。",
+    "emotion_owner": "market_report",
+    "perspective": "这是一个独立的市场观察视角，从情绪提取进一步升级为交易线索整理，强调方向、驱动、风险与后验验证。",
+    "schema_notes": [
+      "date 使用 ISO 格式 YYYY-MM-DD",
+      "emotions 使用 27 种情绪标签中的一个或多个",
+      "direction 表示研报给出的交易方向倾向，不等于交易建议本身",
+      "driver_types 用于描述主要驱动来源，可多选",
+      "followup_result 用于记录后验观察，可逐步补充"
+    ]
+  },
+  "emotion_palette": {
+    "钦佩": "#a855f7",
+    "崇拜": "#7c3aed",
+    "欣赏": "#8b5cf6",
+    "娱乐": "#f97316",
+    "焦虑": "#dc2626",
+    "敬畏": "#4f46e5",
+    "尴尬": "#9a3412",
+    "厌倦": "#6b7280",
+    "冷静": "#0f766e",
+    "困惑": "#475569",
+    "渴望": "#ea580c",
+    "厌恶": "#4b5563",
+    "痛苦": "#991b1b",
+    "着迷": "#2563eb",
+    "嫉妒": "#65a30d",
+    "兴奋": "#d97706",
+    "恐惧": "#b91c1c",
+    "痛恨": "#7f1d1d",
+    "有趣": "#c2410c",
+    "快乐": "#16a34a",
+    "怀旧": "#7c2d12",
+    "浪漫": "#db2777",
+    "悲伤": "#1d4ed8",
+    "满意": "#15803d",
+    "性欲": "#be185d",
+    "同情": "#0891b2",
+    "满足": "#65a30d"
+  },
+  "direction_palette": {
+    "偏多": "#b45309",
+    "偏空": "#b91c1c",
+    "震荡": "#475569",
+    "中性": "#0f766e",
+    "待观察": "#6b7280"
+  },
+  "events": [
+    {
+      "id": "2026-03-23-meg-strong",
+      "date": "2026-03-23",
+      "instrument": "MEG",
+      "related_contracts": [
+        "EG"
+      ],
+      "title": "MEG 进口收缩明显，单边趋势仍偏强",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "兴奋",
+        "冷静"
+      ],
+      "primary_emotion": "兴奋",
+      "confidence": "high",
+      "direction": "偏多",
+      "trade_horizon": "1-3日 / 1-2周",
+      "driver_types": [
+        "供应",
+        "进口",
+        "库存"
+      ],
+      "signal_strength": "强",
+      "summary": "国产和海外开工共同下降，进口收缩明显，港口库存下降，MEG 单边和月差逻辑都偏强。",
+      "hover_detail": "供应收缩和库存下降同时出现，属于更完整的偏多组合。",
+      "full_text": "供应端大量石脑油裂解单元降负荷，国产乙二醇开工率由80%降至66%；海外科威特、伊朗装置停车较多，海峡通行困难，本周开始进口到港量将加速下降。需求端聚酯开工维持高位，策略建议单边在4500-6000区间操作、5-9月差正套。",
+      "thesis": "国产减产 + 海外停车 + 港口去库",
+      "impact": "偏多",
+      "execution_note": "既可以看单边偏强，也可以看正套。",
+      "invalidations": [
+        "进口恢复快于预期",
+        "聚酯开工明显下滑"
+      ],
+      "risk_flags": [
+        "需求边际走弱",
+        "消息驱动波动"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "适合与后续聚酯开工联动复盘。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-23",
+      "tags": [
+        "MEG",
+        "乙二醇",
+        "进口收缩",
+        "正套"
+      ]
+    },
+    {
+      "id": "2026-03-24-ethylene-calm",
+      "date": "2026-03-24",
+      "instrument": "乙烯",
+      "related_contracts": [
+        "乙烯观察"
+      ],
+      "title": "乙烯高位或现边际走弱迹象",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "冷静",
+        "困惑"
+      ],
+      "primary_emotion": "冷静",
+      "confidence": "medium",
+      "direction": "偏空",
+      "trade_horizon": "1-3日",
+      "driver_types": [
+        "供应",
+        "需求",
+        "出口"
+      ],
+      "signal_strength": "中",
+      "summary": "亚洲供应危机对国内影响有限，国内反而因需求减量更大而偏过剩，乙烯高位存在走弱风险。",
+      "hover_detail": "这是少见的逆地缘叙事案例，说明不能机械把所有中东扰动都理解成利多。",
+      "full_text": "亚洲乙烯近端价格快速上涨，因中东石脑油物流受阻导致亚洲裂解装置负反馈。但绝大部分停车装置同步伴随下游配套，实际对外放乙烯影响有限。日韩裂解减产对亚洲流通量影响较大，但对国内影响有限，国内反而因为需求端减量更大而带来更多乙烯外放，实际偏过剩。当前高位已有边际走弱迹象。",
+      "thesis": "海外供应扰动不等于国内偏紧，国内反而偏过剩",
+      "impact": "偏空",
+      "execution_note": "避免把海外供应叙事直接线性映射到国内盘面。",
+      "invalidations": [
+        "国内下游承接突然改善",
+        "外盘持续大涨并带动出口改善"
+      ],
+      "risk_flags": [
+        "海外和国内逻辑错位",
+        "高位回落风险"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "适合当成反例样本使用。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-24",
+      "tags": [
+        "乙烯",
+        "供需错位",
+        "国内过剩"
+      ]
+    },
+    {
+      "id": "2026-03-24-index-bounce",
+      "date": "2026-03-24",
+      "instrument": "期指",
+      "related_contracts": [
+        "IF",
+        "IH",
+        "IC",
+        "IM"
+      ],
+      "title": "期指短线超跌反弹，持续性取决于局势走向",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "冷静",
+        "焦虑"
+      ],
+      "primary_emotion": "冷静",
+      "confidence": "medium",
+      "direction": "偏多",
+      "trade_horizon": "日内",
+      "driver_types": [
+        "宏观",
+        "地缘",
+        "情绪"
+      ],
+      "signal_strength": "弱",
+      "summary": "更偏向事件驱动下的超跌反弹，不是稳定中期趋势判断。",
+      "hover_detail": "适合当成短线修复信号，不要直接上升格为趋势反转。",
+      "full_text": "特朗普再度释出缓和信号，全球风险资产反弹强劲，短期局势转向和缓的可能性大增，叠加前一日超跌明显，预计今日短线将超跌反弹。而随后行情能否持续回升仍取决于局势走向。若双方未能谈拢，则可能仍有反复。",
+      "thesis": "局势缓和信号触发超跌修复",
+      "impact": "偏多",
+      "execution_note": "更适合日内修复思路，持续性要靠后续消息验证。",
+      "invalidations": [
+        "谈判破裂",
+        "油价重新剧烈上冲"
+      ],
+      "risk_flags": [
+        "持续性弱",
+        "对消息非常敏感"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "后续适合记录隔日延续性。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-24",
+      "tags": [
+        "期指",
+        "超跌反弹",
+        "风险偏好"
+      ]
+    },
+    {
+      "id": "2026-03-25-fuel-oil-calm",
+      "date": "2026-03-25",
+      "instrument": "燃料油 / 低硫燃料油",
+      "related_contracts": [
+        "FU",
+        "LU"
+      ],
+      "title": "近月紧缺预期已定价，燃油强势暂缓",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "冷静"
+      ],
+      "primary_emotion": "冷静",
+      "confidence": "medium",
+      "direction": "震荡",
+      "trade_horizon": "1-3日",
+      "driver_types": [
+        "供应",
+        "现实现货",
+        "估值"
+      ],
+      "signal_strength": "中",
+      "summary": "近端市场逐步回归现实，下游观望浓厚，燃油更像从过热预期回到后端合约和真实供需定价。",
+      "hover_detail": "这类判断的意义在于提醒你，别在预期兑现后还拿旧逻辑追。",
+      "full_text": "近期高硫、低硫现货成交升贴水不断下滑，反映市场定价逐步向现实回归，也显示下游观望情绪浓厚，看涨情绪已经褪去。市场关注点将逐步向后端合约转移。高硫需看俄罗斯是否能填补中东缺口，低硫则要看其他地区补充供应和国内加工量提升，进而拖累LU估值。",
+      "thesis": "近月预期已定价 + 关注现实供给补充",
+      "impact": "震荡",
+      "execution_note": "少用旧的紧缺逻辑追近月，更关注后端和现实供需变化。",
+      "invalidations": [
+        "中东缺口继续扩大",
+        "国内加工量不及预期",
+        "海外补供落空"
+      ],
+      "risk_flags": [
+        "预期回落",
+        "现货成交转弱"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "适合和后端合约强弱做验证。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-25",
+      "tags": [
+        "燃料油",
+        "低硫燃料油",
+        "现货",
+        "估值"
+      ]
+    },
+    {
+      "id": "2026-03-25-lithium-excited",
+      "date": "2026-03-25",
+      "instrument": "碳酸锂",
+      "related_contracts": [
+        "LC"
+      ],
+      "title": "矿端扰动延续，碳酸锂下方仍有支撑",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "兴奋",
+        "焦虑"
+      ],
+      "primary_emotion": "兴奋",
+      "confidence": "medium",
+      "direction": "偏多",
+      "trade_horizon": "1-3日 / 1-2周",
+      "driver_types": [
+        "政策",
+        "供应",
+        "需求",
+        "宏观"
+      ],
+      "signal_strength": "中",
+      "summary": "津巴布韦政策扰动加剧矿端紧张，需求端并不弱，价格下方支撑仍在，但波动很大。",
+      "hover_detail": "适合逢低偏多，不适合忽略波动硬杠杆。",
+      "full_text": "盘面高开高走主要系津巴布韦政策端扰动继续发酵，锂出口禁令延续超预期，矿端进口减少或自4月体现。当前矿端依旧紧张，库存约1个月水平。终端虽然新能源车内销偏弱，但单车带电量抬升和出口韧性使整体需求并不弱。短期消息面及宏观面对盘面影响较大，但矿端紧缺使得基本面依旧夯实，投资建议以逢低做多思路布局，但波动较大建议用期权保护。",
+      "thesis": "矿端偏紧 + 需求有韧性 + 波动大",
+      "impact": "偏多",
+      "execution_note": "更适合逢低布局并配保护，不适合高位追涨。",
+      "invalidations": [
+        "出口限制放松",
+        "下游排产明显转弱",
+        "矿端紧张快速缓解"
+      ],
+      "risk_flags": [
+        "波动率大",
+        "政策不确定",
+        "宏观影响强"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "后续重点观察 4 月排产和矿端到港。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-25",
+      "tags": [
+        "碳酸锂",
+        "锂矿",
+        "政策扰动",
+        "新能源"
+      ]
+    },
+    {
+      "id": "2026-03-26-pvc-range",
+      "date": "2026-03-26",
+      "instrument": "PVC",
+      "related_contracts": [
+        "V"
+      ],
+      "title": "PVC 短期宽幅震荡，中长期驱动仍向上",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "冷静",
+        "焦虑"
+      ],
+      "primary_emotion": "冷静",
+      "confidence": "high",
+      "direction": "震荡",
+      "trade_horizon": "日内 / 1-2周",
+      "driver_types": [
+        "地缘",
+        "供应",
+        "库存",
+        "需求"
+      ],
+      "signal_strength": "中",
+      "summary": "高库存和下游抵触制约短期高度，但若中东局势延续，成本与供应扰动会继续托底中期驱动。",
+      "hover_detail": "短线别把它当顺畅趋势，多数时候先震荡消化现实。",
+      "full_text": "中东局势持续动荡，市场消息频出，但核心变量仍在于霍尔木兹海峡通行情况。短期来看，PVC高库存仍需时间消化，下游企业对高价PVC抵触情绪浓厚，多以刚需采购为主，新订单跟进乏力，预计将宽幅震荡。中长期来看，中东局势外溢、成本抬升、国内外氯碱装置供应扰动会支撑PVC市场，若4月局势仍未缓解，未来乙烯法PVC减产缺口将增加，因此驱动仍向上。",
+      "thesis": "短期高库存压制 + 中期供应扰动托底",
+      "impact": "震荡",
+      "execution_note": "短线按震荡看，若现实库存改善再转偏多会更稳。",
+      "invalidations": [
+        "海峡通行恢复",
+        "下游需求继续恶化",
+        "供应扰动无法兑现"
+      ],
+      "risk_flags": [
+        "高库存",
+        "需求抵触高价",
+        "消息频出"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "后续重点对照库存去化节奏。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-26",
+      "tags": [
+        "PVC",
+        "氯碱",
+        "库存",
+        "地缘"
+      ]
+    },
+    {
+      "id": "2026-03-27-rubber-geopolitics",
+      "date": "2026-03-27",
+      "instrument": "合成橡胶",
+      "related_contracts": [
+        "BR"
+      ],
+      "title": "顺丁橡胶成本抬升，趋势偏强但波动放大",
+      "event_type": "研报分析",
+      "emotion_owner": "market_report",
+      "emotions": [
+        "兴奋",
+        "焦虑"
+      ],
+      "primary_emotion": "兴奋",
+      "confidence": "high",
+      "direction": "偏多",
+      "trade_horizon": "日内 / 1-3日",
+      "driver_types": [
+        "地缘",
+        "成本",
+        "供应"
+      ],
+      "signal_strength": "强",
+      "summary": "丁二烯高位、显性库存下降和顺丁减产共同抬升价格中枢，但消息驱动下波动率也显著扩大。",
+      "hover_detail": "逻辑强，但盘中容易被地缘消息甩动，执行层面比判断层面更难。",
+      "full_text": "短期来看，顺丁橡胶预计日内宽幅震荡，趋势偏强运行。中东冲突延续使能化板块估值溢价明显。国际丁二烯价格维持高位且持续上行，显性库存下降，投机情绪带动产业链成本端抬升明显。顺丁橡胶因利润大幅压缩已开启大规模减产，导致可流通货源减少。整体来看，预计顺丁橡胶价格偏强运行，但交易逻辑跟随消息变化较快，需做好风险管理。",
+      "thesis": "丁二烯强势 + 顺丁减产 + 地缘溢价",
+      "impact": "偏多",
+      "execution_note": "适合趋势偏多思路，但需要接受高波动，注意别在消息冲顶时追价。",
+      "invalidations": [
+        "地缘扰动降温",
+        "丁二烯价格回落",
+        "顺丁减产不及预期"
+      ],
+      "risk_flags": [
+        "波动率明显放大",
+        "消息切换快"
+      ],
+      "followup_result": {
+        "status": "待补充",
+        "notes": "适合与 3 月 23 日同品种记录连续观察。"
+      },
+      "source_reference": "国泰君安期货 盘前Plus+ 2026-03-27",
+      "tags": [
+        "合成橡胶",
+        "顺丁",
+        "丁二烯",
+        "地缘"
+      ]
+    }
+  ]
+}

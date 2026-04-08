@@ -697,8 +697,8 @@
                 <section>
                     <h2 class="section-title">提示</h2>
                     <p>
-                        页面读取同目录下的 <code>market-emotion-events.json</code>。如果直接双击本地 HTML 打开，浏览器可能拦截本地 JSON
-                        读取。更稳妥的方式是在当前目录运行 <code>python3 -m http.server</code> 后访问页面。
+                        页面会先读取同目录下的 <code>market-emotion-events.json</code> 索引，再加载各周 JSON。如果直接双击本地 HTML
+                        打开，浏览器可能拦截本地 JSON 读取。更稳妥的方式是在当前目录运行 <code>python3 -m http.server</code> 后访问页面。
                     </p>
                 </section>
             </aside>
@@ -840,9 +840,24 @@
         async function loadDataset() {
             const response = await fetch("./market-emotion-events.json");
             if (!response.ok) {
-                throw new Error("JSON 读取失败");
+                throw new Error("索引读取失败");
             }
-            return response.json();
+
+            const manifest = await response.json();
+            const weekResponses = await Promise.all(
+                (manifest.weeks || []).map(async (week) => {
+                    const weekResponse = await fetch(week.path);
+                    if (!weekResponse.ok) {
+                        throw new Error(`周数据读取失败：${week.week}`);
+                    }
+                    return weekResponse.json();
+                })
+            );
+
+            return {
+                ...manifest,
+                events: weekResponses.flatMap((payload) => payload.events || []),
+            };
         }
 
         function groupByDate(events) {
@@ -892,17 +907,12 @@
         }
 
         function renderStats(dataset) {
-            const total = dataset.events.length;
-            const directions = dataset.events.reduce((acc, event) => {
-                acc[event.direction] = (acc[event.direction] || 0) + 1;
-                return acc;
-            }, {});
-            const topDirection = Object.entries(directions).sort((a, b) => b[1] - a[1])[0];
-            const latest = latestDate(dataset.events);
-            const driverCounts = dataset.events.flatMap((event) => event.driver_types || []).reduce((acc, driver) => {
-                acc[driver] = (acc[driver] || 0) + 1;
-                return acc;
-            }, {});
+            const aggregates = dataset.aggregates || {};
+            const total = aggregates.event_count ?? dataset.events.length;
+            const latest = aggregates.latest_date || latestDate(dataset.events);
+            const directionCounts = aggregates.direction_counts || {};
+            const driverCounts = aggregates.driver_counts || {};
+            const topDirection = Object.entries(directionCounts).sort((a, b) => b[1] - a[1])[0];
             const topDriver = Object.entries(driverCounts).sort((a, b) => b[1] - a[1])[0];
 
             stats.innerHTML = "";
@@ -920,10 +930,11 @@
         }
 
         function buildFilterOptions() {
-            const instruments = ["全部品种", ...new Set(state.dataset.events.map((event) => event.instrument))];
-            const directions = ["全部方向", ...new Set(state.dataset.events.map((event) => event.direction))];
-            const drivers = ["全部驱动", ...new Set(state.dataset.events.flatMap((event) => event.driver_types || []))];
-            const horizons = ["全部周期", ...new Set(state.dataset.events.map((event) => event.trade_horizon))];
+            const aggregates = state.dataset.aggregates || {};
+            const instruments = ["全部品种", ...(aggregates.instruments || [...new Set(state.dataset.events.map((event) => event.instrument))])];
+            const directions = ["全部方向", ...(aggregates.directions || [...new Set(state.dataset.events.map((event) => event.direction))])];
+            const drivers = ["全部驱动", ...(aggregates.drivers || [...new Set(state.dataset.events.flatMap((event) => event.driver_types || []))])];
+            const horizons = ["全部周期", ...(aggregates.horizons || [...new Set(state.dataset.events.map((event) => event.trade_horizon))])];
 
             populateSelect(document.getElementById("instrumentFilter"), instruments);
             populateSelect(document.getElementById("directionFilter"), directions);
