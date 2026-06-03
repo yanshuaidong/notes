@@ -1,1 +1,4 @@
 *.pdf
+
+# Claude / Cursor agent worktrees and local settings
+.claude/
